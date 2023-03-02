@@ -17,13 +17,14 @@ namespace TicTacChessAbet
         int rowIndex = 0;
         int colIndex = 0;
 
-        TowerChessPiece blackTw = new TowerChessPiece("blackTw", true, 1, 2);
+        TowerChessPiece blackTw = new TowerChessPiece("blackTw", true);
         KnightChessPiece blackKgt = new KnightChessPiece("blackKgt", true, 1, 2);
         QueenChessPiece blackQwn = new QueenChessPiece("blackQwn", false, 1, 2);
 
-        TowerChessPiece whiteTw = new TowerChessPiece("whiteTw", false, 1, 2);
         KnightChessPiece whiteKgt = new KnightChessPiece("whiteKgt", false, 1, 2);
         QueenChessPiece whiteQwn = new QueenChessPiece("whiteQwn", true, 1, 2);
+
+        TowerChessPiece whiteTw = new TowerChessPiece("whiteTw", false);
 
         //List<IchessPiece> pieces;
         List<Tile> tiles = new List<Tile>();
@@ -55,13 +56,15 @@ namespace TicTacChessAbet
             QueenChessPiece whiteQwn = new QueenChessPiece("whiteQwn", true, 1, 2);
             */
 
-            tiles[0].TileOccupier = blackTw;
-            tiles[2].TileOccupier = whiteTw;
-            tiles[3].TileOccupier = whiteQwn;
 
-            tiles[8].TileOccupier = blackKgt;
-            tiles[7].TileOccupier = whiteKgt;
-            tiles[6].TileOccupier = blackQwn;
+            tiles[4].TileOccupier = whiteTw;
+
+            //tiles[0].TileOccupier = blackTw;
+            //tiles[3].TileOccupier = whiteQwn;
+            //
+            //tiles[8].TileOccupier = blackKgt;
+            //tiles[7].TileOccupier = whiteKgt;
+            //tiles[6].TileOccupier = blackQwn;
 
             foreach (var item in groupBox1.Controls.OfType<Panel>())
             {
@@ -71,18 +74,21 @@ namespace TicTacChessAbet
 
             //Panel pnl = TileDic[(rowIndex, colIndex)];
             richTextBox1.AppendText(TileDic[(0, 0)].Name + "\n");
-            richTextBox1.AppendText(TileDic[(1, 0)].Name + "\n");
-            richTextBox1.AppendText(TileDic[(2, 0)].Name + "\n");
-
             richTextBox1.AppendText(TileDic[(0, 1)].Name + "\n");
-            richTextBox1.AppendText(TileDic[(1, 1)].Name + "\n");
-            richTextBox1.AppendText(TileDic[(2, 1)].Name + "\n");
-
             richTextBox1.AppendText(TileDic[(0, 2)].Name + "\n");
+
+            richTextBox1.AppendText(TileDic[(1, 0)].Name + "\n");
+            richTextBox1.AppendText(TileDic[(1, 1)].Name + "\n");
             richTextBox1.AppendText(TileDic[(1, 2)].Name + "\n");
+
+            richTextBox1.AppendText(TileDic[(2, 0)].Name + "\n");
+            richTextBox1.AppendText(TileDic[(2, 1)].Name + "\n");
             richTextBox1.AppendText(TileDic[(2, 2)].Name + "\n");
 
+            whiteTw.SetPos(tiles[4]);
+
             UpdateManager();
+
 
         }
 
@@ -119,7 +125,7 @@ namespace TicTacChessAbet
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    tiles.Add(new Tile(i, j, panels[val].Name, panels[val]));
+                    tiles.Add(new Tile(j, i, panels[val].Name, panels[val]));
 
                     //TileDic.Add((i, j), tiles[i]);
                     val++;
@@ -185,29 +191,26 @@ namespace TicTacChessAbet
             {
                 if (tiles[i].TileOccupier == null)
                 {
-                    tiles[i].Panel.BackColor= Color.Green;
+                    //tiles[i].Panel.BackColor= Color.Green;
                 }
             }
         }
+
+        #region testCode
 
         void updateIndexThingy()
         {
             label1.Text = rowIndex.ToString();
             label2.Text = colIndex.ToString();
 
-            /*
             for (int i = 0; i < tiles.Count; i++)
             {
-                if (tiles[i].Row == rowIndex && tiles[i].Column == colIndex)
-                {
-                    label3.Text = tiles[i].Name;
-                }
+                tiles[i].Panel.BackColor = Color.White;
             }
-            //Panel pnl = TileDic[(rowIndex, colIndex)]; //[rowIndex, colIndex];
-            */
+
             Tile tile = TileDic[(rowIndex, colIndex)];
+            tile.Panel.BackColor = Color.Black;
             label3.Text = tile.Name;
-            //label3.Text = 
         }
 
         private void increaseRow_Click(object sender, EventArgs e)
@@ -248,10 +251,10 @@ namespace TicTacChessAbet
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            
-            tiles[3].TileOccupier = null;
-            tiles[4].TileOccupier = whiteQwn;
+            whiteTw.Move(TileDic);
             UpdateManager();
         }
     }
+
+    #endregion
 }
