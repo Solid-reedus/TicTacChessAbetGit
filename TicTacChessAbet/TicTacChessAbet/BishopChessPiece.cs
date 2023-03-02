@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TicTacChessAbet
 {
-    internal class TowerChessPiece : IchessPiece
+    internal class BishopChessPiece : IchessPiece
     {
         public string Name { private set; get;}
         public string ImgName { private set; get;}
@@ -17,79 +17,71 @@ namespace TicTacChessAbet
         public int xAxis { private set; get; }
 
 
-        //int IchessPiece.xAxis => throw new NotImplementedException();
-
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
             List<Tile> tiles = new List<Tile>();
 
-            for (int i = yAxis + 1; i < 3; i++)
-            {
-                if (_dic[(xAxis, i)] != null)
-                {
-                    if (_dic[(xAxis, i)].TileOccupier == null)
-                    {
-                        _dic[(xAxis, i)].Panel.BackColor = Color.Green;
-                    }
-                    else
-                    {
-                        _dic[(xAxis, i)].Panel.BackColor = Color.Red;
-                        break;
-                    }
-                }
-            }
-
+            //increment
+            int posX = xAxis - 1;
+            Debug.WriteLine("posX = " + posX);
             for (int i = xAxis + 1; i < 3; i++)
             {
-                if (_dic[(i, yAxis)] != null)
+                Debug.WriteLine("aaaa");
+                if (_dic[(posX + i,i)] != null)
                 {
-                    if (_dic[(i, yAxis)].TileOccupier == null)
+                    int a = posX + i;
+                    Debug.WriteLine("posX + i = " + a );
+                    if (_dic[(posX + i, i)].TileOccupier == null)
                     {
-                        _dic[(i, yAxis)].Panel.BackColor = Color.Green;
+                        _dic[(posX + i , i)].Panel.BackColor = Color.Green;
                     }
                     else
                     {
-                        _dic[(i, yAxis)].Panel.BackColor = Color.Red;
+                        _dic[(posX + i, i)].Panel.BackColor = Color.Red;
                         break;
                     }
                 }
             }
+            /*
+            for (int i = yAxis + 1; i < 3; i++)
+            {
+                if (_dic[(2 - i, 2 - i)] != null)
+                {
+                    int a = 2 - i;
+                    Debug.WriteLine("i = " + i);
+                    Debug.WriteLine("a = " + a);
 
+                    if (_dic[(i, 2 - i)].TileOccupier == null)
+                    {
+                        _dic[(i, 2 - i)].Panel.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        _dic[(i, 2 - i)].Panel.BackColor = Color.Red;
+                        break;
+                    }
+                }
+            }
+            */
+
+            /*
             for (int i = yAxis - 1; i > -1; i--)
             {
-                if (_dic[(xAxis, i)] != null)
+                if (_dic[(xAxis + i, yAxis + i)] != null)
                 {
-                    Debug.WriteLine("i = " + i);
-
-                    if (_dic[(xAxis, i)].TileOccupier == null)
+                    if (_dic[(xAxis + i, yAxis + i)].TileOccupier == null)
                     {
-                        _dic[(xAxis, i)].Panel.BackColor = Color.Green;
+                        _dic[(xAxis + i, yAxis + i)].Panel.BackColor = Color.Green;
                     }
                     else
                     {
-                        _dic[(xAxis, i)].Panel.BackColor = Color.Red;
+                        _dic[(xAxis + i, yAxis + i)].Panel.BackColor = Color.Red;
                         break;
                     }
                 }
             }
+            */
 
-            for (int i = xAxis - 1; i > -1; i--)
-            {
-                if (_dic[(i, yAxis)] != null)
-                {
-                    //Debug.WriteLine("i = " + i);
-
-                    if (_dic[(i, yAxis)].TileOccupier == null)
-                    {
-                        _dic[(i, yAxis)].Panel.BackColor = Color.Green;
-                    }
-                    else
-                    {
-                        _dic[(i, yAxis)].Panel.BackColor = Color.Red;
-                        break;
-                    }
-                }
-            }
         }
 
         public string Burb()
@@ -101,26 +93,24 @@ namespace TicTacChessAbet
             return _res;
         }
 
-        //, int _xAxis, int _yAxis
-
         public void SetPos(Tile _tile)
         {
             xAxis = _tile.Row;
             yAxis = _tile.Column;
         }
 
-        public TowerChessPiece(string _name, bool _isBlack)
+        public BishopChessPiece(string _name, bool _isBlack)
         {
             Name = _name;
             IsBlack = _isBlack;
 
             if (IsBlack)
             {
-                ImgName = "Chess_Piece_b_tower.png";
+                ImgName = "Chess_Piece_b_bishop.png";
             }
             else
             {
-                ImgName = "Chess_Piece_w_tower.png";
+                ImgName = "Chess_Piece_w_bishop.png";
             }
         }
     }

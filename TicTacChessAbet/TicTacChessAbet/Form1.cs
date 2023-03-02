@@ -26,6 +26,8 @@ namespace TicTacChessAbet
 
         TowerChessPiece whiteTw = new TowerChessPiece("whiteTw", false);
 
+        BishopChessPiece whiteBis = new BishopChessPiece("whiteBis", false);
+
         //List<IchessPiece> pieces;
         List<Tile> tiles = new List<Tile>();
         List<Panel> panels = new List<Panel>();
@@ -57,9 +59,10 @@ namespace TicTacChessAbet
             */
 
 
-            tiles[4].TileOccupier = whiteTw;
+            tiles[1].TileOccupier = whiteTw;
+            tiles[0].TileOccupier = whiteBis;
 
-            //tiles[0].TileOccupier = blackTw;
+            //tiles[7].TileOccupier = blackTw;
             //tiles[3].TileOccupier = whiteQwn;
             //
             //tiles[8].TileOccupier = blackKgt;
@@ -70,7 +73,6 @@ namespace TicTacChessAbet
             {
                 //richTextBox1.AppendText("\n" + item.Name);
             }
-
 
             //Panel pnl = TileDic[(rowIndex, colIndex)];
             richTextBox1.AppendText(TileDic[(0, 0)].Name + "\n");
@@ -85,7 +87,8 @@ namespace TicTacChessAbet
             richTextBox1.AppendText(TileDic[(2, 1)].Name + "\n");
             richTextBox1.AppendText(TileDic[(2, 2)].Name + "\n");
 
-            whiteTw.SetPos(tiles[4]);
+            whiteTw.SetPos(tiles[1]);
+            whiteBis.SetPos(tiles[0]);
 
             UpdateManager();
 
@@ -108,26 +111,13 @@ namespace TicTacChessAbet
             panels.Add(pnlChessTileC2);
             panels.Add(pnlChessTileC3);
 
-
-            names.Add("a");
-            names.Add("b");
-            names.Add("c");
-            names.Add("d");
-            names.Add("e");
-            names.Add("f");
-            names.Add("g");
-            names.Add("i");
-            names.Add("j");
-
             int val = 0;
 
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    tiles.Add(new Tile(j, i, panels[val].Name, panels[val]));
-
-                    //TileDic.Add((i, j), tiles[i]);
+                    tiles.Add(new Tile(i, j, panels[val].Name, panels[val]));
                     val++;
                 }
             }
@@ -251,7 +241,8 @@ namespace TicTacChessAbet
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            whiteTw.Move(TileDic);
+            //whiteTw.Move(TileDic);
+            whiteBis.Move(TileDic);
             UpdateManager();
         }
     }
