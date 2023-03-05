@@ -18,8 +18,6 @@ namespace TicTacChessAbet
 
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
-            //first int is the 2 step the second is the sidestep
-
             List<Tuple<int, int>> moves = new List<Tuple<int, int>>
             {
                 Tuple.Create(xAxis + 1, yAxis + 2),
@@ -43,9 +41,17 @@ namespace TicTacChessAbet
                     && pos.Item2 < 3
                     && pos.Item2 > -1)
                 {
-                    _dic[pos].Panel.BackColor = Color.Green;
-                    _dic[pos].isPlaceable = true;
+                    if (_dic[(pos)].TileOccupier == null)
+                    {
+                        _dic[pos].Panel.BackColor = Color.Green;
+                        _dic[pos].isPlaceable = true;
+                    }
+                    else
+                    {
+                        _dic[pos].Panel.BackColor = Color.Red;
+                    }
                 }
+ 
             }
         }
 
@@ -70,11 +76,11 @@ namespace TicTacChessAbet
 
             if (IsBlack)
             {
-                ImgName = "Knight.png";
+                ImgName = "Arabic_Horse_archer.png";
             }
             else
             {
-                ImgName = "Arabic_Horse_archer.png";
+                ImgName = "Knight.png";
             }
         }
     }

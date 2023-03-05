@@ -263,11 +263,15 @@ namespace TicTacChessAbet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            blackKgt.SetPos(tiles[3]);
+            //blackKgt.SetPos(tiles[3]);
             //whiteKgt.SetPos(tiles[3]);
-            //whiteQwn.SetPos(tiles[4]);
-            //whiteBis.SetPos(tiles[4]);
-            //whiteTw.SetPos(tiles[4]);
+
+            whiteBis.SetPos(tiles[0]);
+            whiteKgt.SetPos(tiles[1]);
+            //whiteQwn.SetPos(tiles[2]);
+            whiteTw.SetPos(tiles[2]);
+            blackTw.SetPos(tiles[3]);
+
             UpdateManager();
         }
 

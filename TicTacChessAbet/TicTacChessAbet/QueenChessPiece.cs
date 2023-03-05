@@ -219,11 +219,11 @@ namespace TicTacChessAbet
 
             if (IsBlack)
             {
-                ImgName = "Chess_Piece_b_queen.png";
+                ImgName = "Arabian_Swordsman.png";
             }
             else
             {
-                ImgName = "Chess_Piece_w_queen.png";
+                ImgName = "Swordman.png";
             }
         }
     }
