@@ -23,19 +23,5 @@ namespace TicTacChessAbet
             Panel = _panel;
         }
 
-        public void IsPlaceable(bool _isPlaceable)
-        {
-            if (_isPlaceable)
-            {
-                isPlaceable = true;
-                Panel.BackColor= Color.Green;
-            }
-            else 
-            {
-                isPlaceable = false;
-                Panel.BackColor = Color.White;
-            }
-        }
-
     }
 }

@@ -52,10 +52,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.increaseCol = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.lblSlectedPiece = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.lblSelectedChessPiece = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -297,16 +299,6 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "label3";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(588, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -327,14 +319,46 @@
             this.lblSlectedPiece.TabIndex = 18;
             this.lblSlectedPiece.Text = "lorem";
             // 
+            // lblSelectedChessPiece
+            // 
+            this.lblSelectedChessPiece.AutoSize = true;
+            this.lblSelectedChessPiece.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblSelectedChessPiece.Location = new System.Drawing.Point(44, 296);
+            this.lblSelectedChessPiece.Name = "lblSelectedChessPiece";
+            this.lblSelectedChessPiece.Size = new System.Drawing.Size(70, 30);
+            this.lblSelectedChessPiece.TabIndex = 20;
+            this.lblSelectedChessPiece.Text = "lorem";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(12, 266);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(203, 30);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "SelectedChessPiece";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(600, 197);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1429, 576);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblSelectedChessPiece);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblSlectedPiece);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.decreaseCol);
             this.Controls.Add(this.label2);
@@ -383,9 +407,11 @@
         private Label label2;
         private Button increaseCol;
         private Label label3;
-        private Button button1;
         private Label label4;
         private Label lblSlectedPiece;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Label lblSelectedChessPiece;
+        private Label label6;
+        private Button button1;
     }
 }

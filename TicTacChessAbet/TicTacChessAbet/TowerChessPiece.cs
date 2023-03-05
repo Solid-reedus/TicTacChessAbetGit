@@ -23,6 +23,7 @@ namespace TicTacChessAbet
         {
             List<Tile> tiles = new List<Tile>();
 
+            //r
             for (int i = yAxis + 1; i < 3; i++)
             {
                 if (_dic[(xAxis, i)] != null)
@@ -30,6 +31,7 @@ namespace TicTacChessAbet
                     if (_dic[(xAxis, i)].TileOccupier == null)
                     {
                         _dic[(xAxis, i)].Panel.BackColor = Color.Green;
+                        _dic[(xAxis, i)].isPlaceable = true;
                     }
                     else
                     {
@@ -38,7 +40,8 @@ namespace TicTacChessAbet
                     }
                 }
             }
-
+            
+            //b
             for (int i = xAxis + 1; i < 3; i++)
             {
                 if (_dic[(i, yAxis)] != null)
@@ -46,6 +49,7 @@ namespace TicTacChessAbet
                     if (_dic[(i, yAxis)].TileOccupier == null)
                     {
                         _dic[(i, yAxis)].Panel.BackColor = Color.Green;
+                        _dic[(i, yAxis)].isPlaceable = true;
                     }
                     else
                     {
@@ -55,15 +59,16 @@ namespace TicTacChessAbet
                 }
             }
 
+            //l
             for (int i = yAxis - 1; i > -1; i--)
             {
                 if (_dic[(xAxis, i)] != null)
                 {
-                    Debug.WriteLine("i = " + i);
 
                     if (_dic[(xAxis, i)].TileOccupier == null)
                     {
                         _dic[(xAxis, i)].Panel.BackColor = Color.Green;
+                        _dic[(xAxis, i)].isPlaceable = true;
                     }
                     else
                     {
@@ -72,16 +77,16 @@ namespace TicTacChessAbet
                     }
                 }
             }
-
+            
+            //t
             for (int i = xAxis - 1; i > -1; i--)
             {
                 if (_dic[(i, yAxis)] != null)
                 {
-                    //Debug.WriteLine("i = " + i);
-
                     if (_dic[(i, yAxis)].TileOccupier == null)
                     {
                         _dic[(i, yAxis)].Panel.BackColor = Color.Green;
+                        _dic[(i, yAxis)].isPlaceable = true;
                     }
                     else
                     {
@@ -107,6 +112,7 @@ namespace TicTacChessAbet
         {
             xAxis = _tile.Row;
             yAxis = _tile.Column;
+            _tile.TileOccupier = this;
         }
 
         public TowerChessPiece(string _name, bool _isBlack)

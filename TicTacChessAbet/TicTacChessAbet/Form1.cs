@@ -1,4 +1,5 @@
 
+using System.Diagnostics;
 using System.Numerics;
 using System.Reflection;
 using System.Windows.Forms;
@@ -9,9 +10,10 @@ namespace TicTacChessAbet
     {
         // --- !!! important make exeption handling for chess pieces if they are on the same tile
 
-        IchessPiece SelectedChessPiece;
+        IchessPiece? SelectedChessPiece;
 
         Dictionary<(int, int), Tile> TileDic = new Dictionary<(int, int), Tile>();
+        //Dictionary<Tile, (int, int)> IndexDic = new Dictionary<Tile, (int, int)>();
 
 
         int rowIndex = 0;
@@ -48,33 +50,6 @@ namespace TicTacChessAbet
                 }
             }
 
-            /*
-            TowerChessPiece blackTw = new TowerChessPiece("blackTw", true, 1, 2);
-            KnightChessPiece blackKgt = new KnightChessPiece("blackKgt", true, 1, 2);
-            QueenChessPiece blackQwn = new QueenChessPiece("blackQwn", false, 1, 2);
-
-            TowerChessPiece whiteTw = new TowerChessPiece("whiteTw", false, 1, 2);
-            KnightChessPiece whiteKgt = new KnightChessPiece("whiteKgt", false, 1, 2);
-            QueenChessPiece whiteQwn = new QueenChessPiece("whiteQwn", true, 1, 2);
-            */
-
-
-            tiles[1].TileOccupier = whiteTw;
-            tiles[0].TileOccupier = whiteBis;
-
-            //tiles[7].TileOccupier = blackTw;
-            //tiles[3].TileOccupier = whiteQwn;
-            //
-            //tiles[8].TileOccupier = blackKgt;
-            //tiles[7].TileOccupier = whiteKgt;
-            //tiles[6].TileOccupier = blackQwn;
-
-            foreach (var item in groupBox1.Controls.OfType<Panel>())
-            {
-                //richTextBox1.AppendText("\n" + item.Name);
-            }
-
-            //Panel pnl = TileDic[(rowIndex, colIndex)];
             richTextBox1.AppendText(TileDic[(0, 0)].Name + "\n");
             richTextBox1.AppendText(TileDic[(0, 1)].Name + "\n");
             richTextBox1.AppendText(TileDic[(0, 2)].Name + "\n");
@@ -87,11 +62,9 @@ namespace TicTacChessAbet
             richTextBox1.AppendText(TileDic[(2, 1)].Name + "\n");
             richTextBox1.AppendText(TileDic[(2, 2)].Name + "\n");
 
-            whiteTw.SetPos(tiles[1]);
+            //whiteTw.SetPos(tiles[4]);
             whiteBis.SetPos(tiles[0]);
-
             UpdateManager();
-
 
         }
 
@@ -118,6 +91,8 @@ namespace TicTacChessAbet
                 for (int j = 0; j < 3; j++)
                 {
                     tiles.Add(new Tile(i, j, panels[val].Name, panels[val]));
+                    //IndexDic.Add(tiles[i], (i, j));
+                    //IndexDic.Add(tiles[i], (i, j));
                     val++;
                 }
             }
@@ -137,8 +112,6 @@ namespace TicTacChessAbet
 
         void UpdateManager()
         {
-
-            
             for (int i = 0; i < tiles.Count; i++)
             {
                 if (tiles[i].TileOccupier != null)
@@ -152,36 +125,76 @@ namespace TicTacChessAbet
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            UpdateManager();
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            UpdateManager();
         }
 
         private void pnlChessTileA1_Click(object sender, EventArgs e)
         {
             Panel pnl = (Panel)sender;
+            (int, int) key = TileDic.FirstOrDefault(x => x.Value.Name == pnl.Name).Key;
 
 
-            for (int i = 0; i < tiles.Count; i++)
+            //if there isnt a pawn selected then it will select a pawn and run .move
+            //otherwise it will place the pawn on the placeable place
+            //and if itself its pressed it will reset the selection
+
+
+            //this will make all tiles white for visibility
+            for (int i = 0; i < panels.Count; i++)
             {
-                if (tiles[i].Panel == pnl)
-                {
-                    lblSlectedPiece.Text = tiles[i].TileOccupier?.Name;
-                    SelectedChessPiece = tiles[i]?.TileOccupier;
-                    break;
-                    //pnl.BackgroundImage = Image.FromFile(basePath + tiles[0].TileOccupier.ImgName);
-                }
+                panels[i].BackColor = Color.White;
             }
+
+
+            //if the Selected chess piece is once again clicked it will reset the selection 
+            if (TileDic[key].TileOccupier == SelectedChessPiece)
+            {
+                SelectedChessPiece = null;
+                return;
+            }
+
+            //if there is a tile selected and there inst already a selected chess piece then it will
+            //highlight the posible positions with .move
+            if (TileDic[key].TileOccupier != null
+                && SelectedChessPiece == null)
+            {
+                SelectedChessPiece = TileDic[key].TileOccupier;
+                lblSelectedChessPiece.Text = SelectedChessPiece.Name;
+                SelectedChessPiece.Move(TileDic);
+            }
+            //otherwise it will place the selected chess piece on a tile that is placeable
+            else if (TileDic[key].isPlaceable)
+            {
+                for (int i = 0; i < tiles.Count; i++)
+                {
+                    tiles[i].isPlaceable = false;
+                }
+
+                (int, int) a = TileDic.FirstOrDefault(x => x.Value.TileOccupier == SelectedChessPiece).Key;
+                TileDic[a].TileOccupier = null;
+
+                SelectedChessPiece.SetPos(TileDic[key]);
+                UpdateManager();
+                SelectedChessPiece = null;
+            }
+            else
+            {
+                SelectedChessPiece = null;
+            }
+
+            richTextBox1.AppendText("\n \n \n");
             for (int i = 0; i < tiles.Count; i++)
             {
-                if (tiles[i].TileOccupier == null)
+                richTextBox1.AppendText("tiles[i].Panel.Name " + tiles[i].Panel.Name);
+                if (tiles[i].TileOccupier != null)
                 {
-                    //tiles[i].Panel.BackColor= Color.Green;
+                    richTextBox1.AppendText(" tiles[i].TileOccupier.Name " + tiles[i]?.TileOccupier.Name + "\n");
+                }
+                else
+                {
+                    richTextBox1.AppendText(" n/a \n");
                 }
             }
         }
@@ -241,8 +254,17 @@ namespace TicTacChessAbet
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //whiteTw.Move(TileDic);
-            whiteBis.Move(TileDic);
+            whiteTw.Move(TileDic);
+            UpdateManager();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            whiteBis.SetPos(tiles[4]);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(whiteBis.Name);
+            richTextBox1.AppendText("\n");
+            //whiteTw.SetPos(tiles[4]);
             UpdateManager();
         }
     }

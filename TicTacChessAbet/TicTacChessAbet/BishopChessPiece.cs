@@ -26,7 +26,6 @@ namespace TicTacChessAbet
             Debug.WriteLine("posX = " + posX);
             for (int i = xAxis + 1; i < 3; i++)
             {
-                Debug.WriteLine("aaaa");
                 if (_dic[(posX + i,i)] != null)
                 {
                     int a = posX + i;
@@ -97,6 +96,7 @@ namespace TicTacChessAbet
         {
             xAxis = _tile.Row;
             yAxis = _tile.Column;
+            _tile.TileOccupier = this;
         }
 
         public BishopChessPiece(string _name, bool _isBlack)

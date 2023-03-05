@@ -25,10 +25,7 @@ namespace TicTacChessAbet
         public string Burb()
         {
             string _res;
-
             _res = "name = " + Name + "\n" + "x axis = " + xAxis.ToString()+ "\n" + "y axis = " + yAxis.ToString();
-
-
             return _res;
         }
 
