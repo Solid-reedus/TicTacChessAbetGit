@@ -21,7 +21,7 @@ namespace TicTacChessAbet
 
         TowerChessPiece blackTw = new TowerChessPiece("blackTw", true);
         KnightChessPiece blackKgt = new KnightChessPiece("blackKgt", true);
-        QueenChessPiece blackQwn = new QueenChessPiece("blackQwn", false);
+        QueenChessPiece blackQwn = new QueenChessPiece("blackQwn", true);
 
         KnightChessPiece whiteKgt = new KnightChessPiece("whiteKgt", false);
         QueenChessPiece whiteQwn = new QueenChessPiece("whiteQwn", false);
@@ -29,6 +29,7 @@ namespace TicTacChessAbet
         TowerChessPiece whiteTw = new TowerChessPiece("whiteTw", false);
 
         BishopChessPiece whiteBis = new BishopChessPiece("whiteBis", false);
+        BishopChessPiece blackBis = new BishopChessPiece("blackBis", true);
 
         List<Tile> tiles = new List<Tile>();
         List<Panel> panels = new List<Panel>();
@@ -263,14 +264,15 @@ namespace TicTacChessAbet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //blackKgt.SetPos(tiles[3]);
-            //whiteKgt.SetPos(tiles[3]);
 
-            whiteBis.SetPos(tiles[0]);
+            whiteQwn.SetPos(tiles[0]);
             whiteKgt.SetPos(tiles[1]);
-            //whiteQwn.SetPos(tiles[2]);
             whiteTw.SetPos(tiles[2]);
-            blackTw.SetPos(tiles[3]);
+
+            //blackBis.SetPos(tiles[6]);
+            blackQwn.SetPos(tiles[6]);
+            blackKgt.SetPos(tiles[7]);
+            blackTw.SetPos(tiles[8]);
 
             UpdateManager();
         }
