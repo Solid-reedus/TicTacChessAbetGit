@@ -21,66 +21,110 @@ namespace TicTacChessAbet
         {
             List<Tile> tiles = new List<Tile>();
 
-            //increment
-            int posX = xAxis - 1;
-            Debug.WriteLine("posX = " + posX);
-            for (int i = xAxis + 1; i < 3; i++)
-            {
-                if (_dic[(posX + i,i)] != null)
-                {
-                    int a = posX + i;
-                    Debug.WriteLine("posX + i = " + a );
-                    if (_dic[(posX + i, i)].TileOccupier == null)
-                    {
-                        _dic[(posX + i , i)].Panel.BackColor = Color.Green;
-                    }
-                    else
-                    {
-                        _dic[(posX + i, i)].Panel.BackColor = Color.Red;
-                        break;
-                    }
-                }
-            }
-            /*
+            //right down
             for (int i = yAxis + 1; i < 3; i++)
             {
-                if (_dic[(2 - i, 2 - i)] != null)
-                {
-                    int a = 2 - i;
-                    Debug.WriteLine("i = " + i);
-                    Debug.WriteLine("a = " + a);
+                int min = i - yAxis;
+                int x = xAxis + min;
 
-                    if (_dic[(i, 2 - i)].TileOccupier == null)
+                if (x < 0 || i < 0 || x > 2 || i > 2)
+                {
+                    break;
+                }
+
+                if (_dic[(x, i)] != null)
+                {
+                    if (_dic[(x, i)].TileOccupier == null)
                     {
-                        _dic[(i, 2 - i)].Panel.BackColor = Color.Green;
+                        _dic[(x, i)].Panel.BackColor = Color.Green;
+                        _dic[(x, i)].isPlaceable = true;
                     }
                     else
                     {
-                        _dic[(i, 2 - i)].Panel.BackColor = Color.Red;
+                        _dic[(x, i)].Panel.BackColor = Color.Red;
                         break;
                     }
                 }
             }
-            */
 
-            /*
+            //left up
             for (int i = yAxis - 1; i > -1; i--)
             {
-                if (_dic[(xAxis + i, yAxis + i)] != null)
+                int min = i - yAxis;
+                int x = xAxis + min;
+
+                if (x < 0 || i < 0 || x > 2 || i > 2)
                 {
-                    if (_dic[(xAxis + i, yAxis + i)].TileOccupier == null)
+                    break;
+                }
+
+                if (_dic[(x, i)] != null)
+                {
+                    if (_dic[(x, i)].TileOccupier == null)
                     {
-                        _dic[(xAxis + i, yAxis + i)].Panel.BackColor = Color.Green;
+                        _dic[(x, i)].Panel.BackColor = Color.Green;
+                        _dic[(x, i)].isPlaceable = true;
                     }
                     else
                     {
-                        _dic[(xAxis + i, yAxis + i)].Panel.BackColor = Color.Red;
+                        _dic[(x, i)].Panel.BackColor = Color.Red;
                         break;
                     }
                 }
             }
-            */
 
+            //right up
+            for (int i = yAxis + 1; i < 3; i++)
+            {
+                int min = i - yAxis;
+                int x = xAxis - min;
+
+                if (x < 0 || i < 0 || x > 2 || i > 2)
+                {
+                    break;
+                }
+
+                if (_dic[(x, i)] != null)
+                {
+                    if (_dic[(x, i)].TileOccupier == null)
+                    {
+                        _dic[(x, i)].Panel.BackColor = Color.Green;
+                        _dic[(x, i)].isPlaceable = true;
+                    }
+                    else
+                    {
+                        _dic[(x, i)].Panel.BackColor = Color.Red;
+                        break;
+                    }
+                }
+            }
+
+            //left down
+            for (int i = yAxis - 1; i > -1; i--)
+            {
+                int min = i - yAxis;
+                int x = xAxis - min;
+
+
+                if (x < 0 || i < 0 || x > 2 || i > 2)
+                {
+                    break;
+                }
+
+                if (_dic[(x, i)] != null)
+                {
+                    if (_dic[(x, i)].TileOccupier == null)
+                    {
+                        _dic[(x, i)].Panel.BackColor = Color.Green;
+                        _dic[(x, i)].isPlaceable = true;
+                    }
+                    else
+                    {
+                        _dic[(x, i)].Panel.BackColor = Color.Red;
+                        break;
+                    }
+                }
+            }
         }
 
         public string Burb()

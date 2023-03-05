@@ -30,12 +30,10 @@ namespace TicTacChessAbet
             return _res;
         }
 
-        public KnightChessPiece(string _name, bool _isBlack, int _xAxis, int _yAxis)
+        public KnightChessPiece(string _name, bool _isBlack)
         {
             Name = _name;
             IsBlack = _isBlack;
-            xAxis = _xAxis;
-            yAxis = _yAxis;
 
             if (IsBlack)
             {

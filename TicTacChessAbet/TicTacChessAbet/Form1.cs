@@ -8,29 +8,25 @@ namespace TicTacChessAbet
 {
     public partial class Form1 : Form
     {
-        // --- !!! important make exeption handling for chess pieces if they are on the same tile
-
         IchessPiece? SelectedChessPiece;
 
         Dictionary<(int, int), Tile> TileDic = new Dictionary<(int, int), Tile>();
         //Dictionary<Tile, (int, int)> IndexDic = new Dictionary<Tile, (int, int)>();
 
-
         int rowIndex = 0;
         int colIndex = 0;
 
         TowerChessPiece blackTw = new TowerChessPiece("blackTw", true);
-        KnightChessPiece blackKgt = new KnightChessPiece("blackKgt", true, 1, 2);
-        QueenChessPiece blackQwn = new QueenChessPiece("blackQwn", false, 1, 2);
+        KnightChessPiece blackKgt = new KnightChessPiece("blackKgt", true);
+        QueenChessPiece blackQwn = new QueenChessPiece("blackQwn", false);
 
-        KnightChessPiece whiteKgt = new KnightChessPiece("whiteKgt", false, 1, 2);
-        QueenChessPiece whiteQwn = new QueenChessPiece("whiteQwn", true, 1, 2);
+        KnightChessPiece whiteKgt = new KnightChessPiece("whiteKgt", false);
+        QueenChessPiece whiteQwn = new QueenChessPiece("whiteQwn", false);
 
         TowerChessPiece whiteTw = new TowerChessPiece("whiteTw", false);
 
         BishopChessPiece whiteBis = new BishopChessPiece("whiteBis", false);
 
-        //List<IchessPiece> pieces;
         List<Tile> tiles = new List<Tile>();
         List<Panel> panels = new List<Panel>();
         string basePath = "Resources//images//";
@@ -62,10 +58,7 @@ namespace TicTacChessAbet
             richTextBox1.AppendText(TileDic[(2, 1)].Name + "\n");
             richTextBox1.AppendText(TileDic[(2, 2)].Name + "\n");
 
-            //whiteTw.SetPos(tiles[4]);
-            whiteBis.SetPos(tiles[0]);
             UpdateManager();
-
         }
 
         void TileSetup()
@@ -260,10 +253,8 @@ namespace TicTacChessAbet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            whiteBis.SetPos(tiles[4]);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(whiteBis.Name);
-            richTextBox1.AppendText("\n");
+            whiteQwn.SetPos(tiles[4]);
+            //whiteBis.SetPos(tiles[4]);
             //whiteTw.SetPos(tiles[4]);
             UpdateManager();
         }

@@ -16,9 +16,6 @@ namespace TicTacChessAbet
         public int yAxis { private set; get; }
         public int xAxis { private set; get; }
 
-
-        //int IchessPiece.xAxis => throw new NotImplementedException();
-
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
             List<Tile> tiles = new List<Tile>();
@@ -105,8 +102,6 @@ namespace TicTacChessAbet
 
             return _res;
         }
-
-        //, int _xAxis, int _yAxis
 
         public void SetPos(Tile _tile)
         {
