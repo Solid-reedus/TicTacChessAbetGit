@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlChessTileC3 = new System.Windows.Forms.Panel();
             this.pnlChessTileB3 = new System.Windows.Forms.Panel();
             this.pnlChessTileC2 = new System.Windows.Forms.Panel();
@@ -58,6 +59,11 @@
             this.lblSelectedChessPiece = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +75,7 @@
             this.pnlChessTileC3.Name = "pnlChessTileC3";
             this.pnlChessTileC3.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileC3.TabIndex = 5;
+            this.pnlChessTileC3.UseWaitCursor = true;
             this.pnlChessTileC3.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // pnlChessTileB3
@@ -79,6 +86,7 @@
             this.pnlChessTileB3.Name = "pnlChessTileB3";
             this.pnlChessTileB3.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileB3.TabIndex = 5;
+            this.pnlChessTileB3.UseWaitCursor = true;
             this.pnlChessTileB3.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // pnlChessTileC2
@@ -89,6 +97,7 @@
             this.pnlChessTileC2.Name = "pnlChessTileC2";
             this.pnlChessTileC2.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileC2.TabIndex = 4;
+            this.pnlChessTileC2.UseWaitCursor = true;
             this.pnlChessTileC2.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // pnlChessTileA3
@@ -99,6 +108,7 @@
             this.pnlChessTileA3.Name = "pnlChessTileA3";
             this.pnlChessTileA3.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileA3.TabIndex = 2;
+            this.pnlChessTileA3.UseWaitCursor = true;
             this.pnlChessTileA3.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // pnlChessTileC1
@@ -109,6 +119,7 @@
             this.pnlChessTileC1.Name = "pnlChessTileC1";
             this.pnlChessTileC1.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileC1.TabIndex = 3;
+            this.pnlChessTileC1.UseWaitCursor = true;
             this.pnlChessTileC1.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // pnlChessTileB2
@@ -119,6 +130,7 @@
             this.pnlChessTileB2.Name = "pnlChessTileB2";
             this.pnlChessTileB2.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileB2.TabIndex = 4;
+            this.pnlChessTileB2.UseWaitCursor = true;
             this.pnlChessTileB2.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // pnlChessTileA2
@@ -129,6 +141,7 @@
             this.pnlChessTileA2.Name = "pnlChessTileA2";
             this.pnlChessTileA2.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileA2.TabIndex = 2;
+            this.pnlChessTileA2.UseWaitCursor = true;
             this.pnlChessTileA2.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // pnlChessTileB1
@@ -139,6 +152,7 @@
             this.pnlChessTileB1.Name = "pnlChessTileB1";
             this.pnlChessTileB1.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileB1.TabIndex = 3;
+            this.pnlChessTileB1.UseWaitCursor = true;
             this.pnlChessTileB1.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // pnlChessTileA1
@@ -149,6 +163,7 @@
             this.pnlChessTileA1.Name = "pnlChessTileA1";
             this.pnlChessTileA1.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileA1.TabIndex = 1;
+            this.pnlChessTileA1.UseWaitCursor = true;
             this.pnlChessTileA1.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
             // richTextBox1
@@ -161,7 +176,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox1.Controls.Add(this.pnlChessTileC3);
             this.groupBox1.Controls.Add(this.pnlChessTileA1);
             this.groupBox1.Controls.Add(this.pnlChessTileB3);
@@ -176,7 +191,7 @@
             this.groupBox1.Size = new System.Drawing.Size(299, 323);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.UseWaitCursor = true;
             // 
             // panel1
             // 
@@ -209,7 +224,7 @@
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(440, 461);
+            this.panel4.Location = new System.Drawing.Point(191, 437);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(90, 90);
             this.panel4.TabIndex = 6;
@@ -218,7 +233,7 @@
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel5.Location = new System.Drawing.Point(536, 461);
+            this.panel5.Location = new System.Drawing.Point(287, 437);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(90, 90);
             this.panel5.TabIndex = 7;
@@ -227,7 +242,7 @@
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel6.Location = new System.Drawing.Point(632, 461);
+            this.panel6.Location = new System.Drawing.Point(383, 437);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(90, 90);
             this.panel6.TabIndex = 8;
@@ -349,11 +364,64 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(600, 251);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel7.Location = new System.Drawing.Point(479, 12);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(90, 90);
+            this.panel7.TabIndex = 4;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel8.Location = new System.Drawing.Point(479, 437);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(90, 90);
+            this.panel8.TabIndex = 5;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel9.BackgroundImage")));
+            this.panel9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel9.Location = new System.Drawing.Point(44, 12);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(90, 90);
+            this.panel9.TabIndex = 4;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel10.BackgroundImage")));
+            this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel10.Location = new System.Drawing.Point(44, 437);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(90, 90);
+            this.panel10.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1429, 576);
+            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblSelectedChessPiece);
             this.Controls.Add(this.label6);
@@ -413,5 +481,10 @@
         private Label lblSelectedChessPiece;
         private Label label6;
         private Button button1;
+        private Button button2;
+        private Panel panel7;
+        private Panel panel8;
+        private Panel panel9;
+        private Panel panel10;
     }
 }

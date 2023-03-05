@@ -43,11 +43,6 @@ namespace TicTacChessAbet
                     && pos.Item2 < 3
                     && pos.Item2 > -1)
                 {
-
-                    Debug.WriteLine(pos);
-                    Debug.WriteLine(_dic[pos].Name);
-
-
                     _dic[pos].Panel.BackColor = Color.Green;
                     _dic[pos].isPlaceable = true;
                 }
@@ -75,11 +70,11 @@ namespace TicTacChessAbet
 
             if (IsBlack)
             {
-                ImgName = "Chess_Piece_b_knight.png";
+                ImgName = "Knight.png";
             }
             else
             {
-                ImgName = "Chess_Piece_w_knight.png";
+                ImgName = "Arabic_Horse_archer.png";
             }
         }
     }

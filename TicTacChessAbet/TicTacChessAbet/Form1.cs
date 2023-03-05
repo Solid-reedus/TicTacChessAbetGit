@@ -11,6 +11,7 @@ namespace TicTacChessAbet
         // IMPORTANT bishop/queen need code rework
 
         IchessPiece? SelectedChessPiece;
+        bool gameHasBegun = false;
 
         Dictionary<(int, int), Tile> TileDic = new Dictionary<(int, int), Tile>();
         //Dictionary<Tile, (int, int)> IndexDic = new Dictionary<Tile, (int, int)>();
@@ -127,6 +128,14 @@ namespace TicTacChessAbet
 
         private void pnlChessTileA1_Click(object sender, EventArgs e)
         {
+
+            /*
+            if (!gameHasBegun)
+            {
+                return;
+            }
+            */
+
             Panel pnl = (Panel)sender;
             (int, int) key = TileDic.FirstOrDefault(x => x.Value.Name == pnl.Name).Key;
 
@@ -254,11 +263,18 @@ namespace TicTacChessAbet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            whiteKgt.SetPos(tiles[3]);
+            blackKgt.SetPos(tiles[3]);
+            //whiteKgt.SetPos(tiles[3]);
             //whiteQwn.SetPos(tiles[4]);
             //whiteBis.SetPos(tiles[4]);
             //whiteTw.SetPos(tiles[4]);
             UpdateManager();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            groupBox1.Enabled = false;
+            groupBox1.Visible = false;
         }
     }
 
