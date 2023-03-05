@@ -8,6 +8,8 @@ namespace TicTacChessAbet
 {
     public partial class Form1 : Form
     {
+        // IMPORTANT bishop/queen need code rework
+
         IchessPiece? SelectedChessPiece;
 
         Dictionary<(int, int), Tile> TileDic = new Dictionary<(int, int), Tile>();
@@ -127,7 +129,6 @@ namespace TicTacChessAbet
         {
             Panel pnl = (Panel)sender;
             (int, int) key = TileDic.FirstOrDefault(x => x.Value.Name == pnl.Name).Key;
-
 
             //if there isnt a pawn selected then it will select a pawn and run .move
             //otherwise it will place the pawn on the placeable place
@@ -253,7 +254,8 @@ namespace TicTacChessAbet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            whiteQwn.SetPos(tiles[4]);
+            whiteKgt.SetPos(tiles[3]);
+            //whiteQwn.SetPos(tiles[4]);
             //whiteBis.SetPos(tiles[4]);
             //whiteTw.SetPos(tiles[4]);
             UpdateManager();

@@ -16,7 +16,7 @@ namespace TicTacChessAbet
         public int yAxis { get; }
 
         //movement
-        void Move(Dictionary<(int, int), Tile> _dic) { }
+        public void Move(Dictionary<(int, int), Tile> _dic) { }
         void SetPos(Tile _tile) { }
 
     }
