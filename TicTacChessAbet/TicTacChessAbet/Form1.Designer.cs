@@ -40,12 +40,12 @@
             this.pnlChessTileA1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileWhite1 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileWhite2 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileWhite3 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileBlack1 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileBlack2 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileBlack3 = new System.Windows.Forms.Panel();
             this.increaseRow = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.decreaseRow = new System.Windows.Forms.Button();
@@ -60,10 +60,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileWhite4 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileBlack4 = new System.Windows.Forms.Panel();
+            this.pnlWhiteBanner = new System.Windows.Forms.Panel();
+            this.pnlBlackBanner = new System.Windows.Forms.Panel();
+            this.btnStartGame = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -193,59 +194,65 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.UseWaitCursor = true;
             // 
-            // panel1
+            // pnlSetupTileWhite1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(191, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(90, 90);
-            this.panel1.TabIndex = 3;
+            this.pnlSetupTileWhite1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileWhite1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileWhite1.Location = new System.Drawing.Point(191, 12);
+            this.pnlSetupTileWhite1.Name = "pnlSetupTileWhite1";
+            this.pnlSetupTileWhite1.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileWhite1.TabIndex = 3;
+            this.pnlSetupTileWhite1.Click += new System.EventHandler(this.pnlSetupTileWhite1_Click);
             // 
-            // panel2
+            // pnlSetupTileWhite2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(287, 12);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(90, 90);
-            this.panel2.TabIndex = 4;
+            this.pnlSetupTileWhite2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileWhite2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileWhite2.Location = new System.Drawing.Point(287, 12);
+            this.pnlSetupTileWhite2.Name = "pnlSetupTileWhite2";
+            this.pnlSetupTileWhite2.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileWhite2.TabIndex = 4;
+            this.pnlSetupTileWhite2.Click += new System.EventHandler(this.pnlSetupTileWhite1_Click);
             // 
-            // panel3
+            // pnlSetupTileWhite3
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Location = new System.Drawing.Point(383, 12);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(90, 90);
-            this.panel3.TabIndex = 5;
+            this.pnlSetupTileWhite3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileWhite3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileWhite3.Location = new System.Drawing.Point(383, 12);
+            this.pnlSetupTileWhite3.Name = "pnlSetupTileWhite3";
+            this.pnlSetupTileWhite3.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileWhite3.TabIndex = 5;
+            this.pnlSetupTileWhite3.Click += new System.EventHandler(this.pnlSetupTileWhite1_Click);
             // 
-            // panel4
+            // pnlSetupTileBlack1
             // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(191, 437);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(90, 90);
-            this.panel4.TabIndex = 6;
+            this.pnlSetupTileBlack1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileBlack1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileBlack1.Location = new System.Drawing.Point(191, 437);
+            this.pnlSetupTileBlack1.Name = "pnlSetupTileBlack1";
+            this.pnlSetupTileBlack1.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileBlack1.TabIndex = 6;
+            this.pnlSetupTileBlack1.Click += new System.EventHandler(this.pnlSetupTileBlack1_Click);
             // 
-            // panel5
+            // pnlSetupTileBlack2
             // 
-            this.panel5.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel5.Location = new System.Drawing.Point(287, 437);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(90, 90);
-            this.panel5.TabIndex = 7;
+            this.pnlSetupTileBlack2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileBlack2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileBlack2.Location = new System.Drawing.Point(287, 437);
+            this.pnlSetupTileBlack2.Name = "pnlSetupTileBlack2";
+            this.pnlSetupTileBlack2.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileBlack2.TabIndex = 7;
+            this.pnlSetupTileBlack2.Click += new System.EventHandler(this.pnlSetupTileBlack1_Click);
             // 
-            // panel6
+            // pnlSetupTileBlack3
             // 
-            this.panel6.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel6.Location = new System.Drawing.Point(383, 437);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(90, 90);
-            this.panel6.TabIndex = 8;
+            this.pnlSetupTileBlack3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileBlack3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileBlack3.Location = new System.Drawing.Point(383, 437);
+            this.pnlSetupTileBlack3.Name = "pnlSetupTileBlack3";
+            this.pnlSetupTileBlack3.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileBlack3.TabIndex = 8;
+            this.pnlSetupTileBlack3.Click += new System.EventHandler(this.pnlSetupTileBlack1_Click);
             // 
             // increaseRow
             // 
@@ -356,7 +363,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(600, 197);
+            this.button1.Location = new System.Drawing.Point(588, 288);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 21;
@@ -366,7 +373,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(600, 251);
+            this.button2.Location = new System.Drawing.Point(588, 342);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 22;
@@ -374,53 +381,66 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // panel7
+            // pnlSetupTileWhite4
             // 
-            this.panel7.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel7.Location = new System.Drawing.Point(479, 12);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(90, 90);
-            this.panel7.TabIndex = 4;
+            this.pnlSetupTileWhite4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileWhite4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileWhite4.Location = new System.Drawing.Point(479, 12);
+            this.pnlSetupTileWhite4.Name = "pnlSetupTileWhite4";
+            this.pnlSetupTileWhite4.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileWhite4.TabIndex = 4;
+            this.pnlSetupTileWhite4.Click += new System.EventHandler(this.pnlSetupTileWhite1_Click);
             // 
-            // panel8
+            // pnlSetupTileBlack4
             // 
-            this.panel8.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel8.Location = new System.Drawing.Point(479, 437);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(90, 90);
-            this.panel8.TabIndex = 5;
+            this.pnlSetupTileBlack4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileBlack4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileBlack4.Location = new System.Drawing.Point(479, 437);
+            this.pnlSetupTileBlack4.Name = "pnlSetupTileBlack4";
+            this.pnlSetupTileBlack4.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileBlack4.TabIndex = 5;
+            this.pnlSetupTileBlack4.Click += new System.EventHandler(this.pnlSetupTileBlack1_Click);
             // 
-            // panel9
+            // pnlWhiteBanner
             // 
-            this.panel9.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel9.BackgroundImage")));
-            this.panel9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel9.Location = new System.Drawing.Point(44, 12);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(90, 90);
-            this.panel9.TabIndex = 4;
+            this.pnlWhiteBanner.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlWhiteBanner.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlWhiteBanner.BackgroundImage")));
+            this.pnlWhiteBanner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlWhiteBanner.Location = new System.Drawing.Point(44, 12);
+            this.pnlWhiteBanner.Name = "pnlWhiteBanner";
+            this.pnlWhiteBanner.Size = new System.Drawing.Size(90, 90);
+            this.pnlWhiteBanner.TabIndex = 4;
             // 
-            // panel10
+            // pnlBlackBanner
             // 
-            this.panel10.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel10.BackgroundImage")));
-            this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel10.Location = new System.Drawing.Point(44, 437);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(90, 90);
-            this.panel10.TabIndex = 5;
+            this.pnlBlackBanner.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlBlackBanner.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlBlackBanner.BackgroundImage")));
+            this.pnlBlackBanner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlBlackBanner.Location = new System.Drawing.Point(44, 437);
+            this.pnlBlackBanner.Name = "pnlBlackBanner";
+            this.pnlBlackBanner.Size = new System.Drawing.Size(90, 90);
+            this.pnlBlackBanner.TabIndex = 5;
+            // 
+            // btnStartGame
+            // 
+            this.btnStartGame.Location = new System.Drawing.Point(536, 130);
+            this.btnStartGame.Name = "btnStartGame";
+            this.btnStartGame.Size = new System.Drawing.Size(127, 46);
+            this.btnStartGame.TabIndex = 23;
+            this.btnStartGame.Text = "start game";
+            this.btnStartGame.UseVisualStyleBackColor = true;
+            this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1429, 576);
-            this.Controls.Add(this.panel10);
-            this.Controls.Add(this.panel9);
-            this.Controls.Add(this.panel8);
-            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.btnStartGame);
+            this.Controls.Add(this.pnlBlackBanner);
+            this.Controls.Add(this.pnlWhiteBanner);
+            this.Controls.Add(this.pnlSetupTileBlack4);
+            this.Controls.Add(this.pnlSetupTileWhite4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblSelectedChessPiece);
@@ -434,13 +454,13 @@
             this.Controls.Add(this.decreaseRow);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.increaseRow);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlSetupTileBlack1);
+            this.Controls.Add(this.pnlSetupTileBlack2);
+            this.Controls.Add(this.pnlSetupTileWhite1);
+            this.Controls.Add(this.pnlSetupTileBlack3);
+            this.Controls.Add(this.pnlSetupTileWhite2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnlSetupTileWhite3);
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -462,12 +482,12 @@
         private Panel pnlChessTileB1;
         private Panel pnlChessTileA1;
         private GroupBox groupBox1;
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
-        private Panel panel6;
+        private Panel pnlSetupTileWhite1;
+        private Panel pnlSetupTileWhite2;
+        private Panel pnlSetupTileWhite3;
+        private Panel pnlSetupTileBlack1;
+        private Panel pnlSetupTileBlack2;
+        private Panel pnlSetupTileBlack3;
         private Button increaseRow;
         private Label label1;
         private Button decreaseRow;
@@ -482,9 +502,10 @@
         private Label label6;
         private Button button1;
         private Button button2;
-        private Panel panel7;
-        private Panel panel8;
-        private Panel panel9;
-        private Panel panel10;
+        private Panel pnlSetupTileWhite4;
+        private Panel pnlSetupTileBlack4;
+        private Panel pnlWhiteBanner;
+        private Panel pnlBlackBanner;
+        private Button btnStartGame;
     }
 }
