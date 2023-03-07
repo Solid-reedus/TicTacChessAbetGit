@@ -9,6 +9,8 @@ namespace TicTacChessAbet
     public partial class Form1 : Form
     {
         // IMPORTANT bishop/queen need code rework
+        // IMPORTANT pieces before game start code rework needed
+
 
         IchessPiece? SelectedChessPiece;
         bool whitesTurn = true;
@@ -62,16 +64,6 @@ namespace TicTacChessAbet
 
 
             TileSetup();
-            //pictureBox1.Image = Image.FromFile("Resources//images//Chess_Piece_b_bishop.png");
-
-            foreach (var item in tiles)
-            {
-                if (item.Row == 0)
-                {
-                    item.Panel.BackColor = Color.Yellow;
-                }
-            }
-
             richTextBox1.AppendText("\n");
 
             for (int i = 0; i < tiles.Count; i++)
@@ -94,6 +86,7 @@ namespace TicTacChessAbet
         void TileSetup()
         {
             List<string> names = new List<string>();
+
 
             panels.Add(pnlChessTileA1);
             panels.Add(pnlChessTileA2);
@@ -187,28 +180,31 @@ namespace TicTacChessAbet
 
         private void CheckWin()
         {
-            //WinList
-
             richTextBox1.AppendText("\n check " +  WinList.Count +" \n");
 
             for (int i = 0; i < WinList.Count; i++)
             {
-                /*
-                richTextBox1.AppendText("WinList[i].Item1.Name = " + WinList[i].Item1.Name + "\n");
-                richTextBox1.AppendText("WinList[i].Item2.Name = " + WinList[i].Item2.Name + "\n");
-                richTextBox1.AppendText("WinList[i].Item3.Name = " + WinList[i].Item3.Name + "\n \n");
-                */
 
                 if (WinList[i].Item1.TileOccupier?.IsBlack == true
                     && WinList[i].Item2.TileOccupier?.IsBlack == true
                     && WinList[i].Item3.TileOccupier?.IsBlack == true)
                 {
+                    WinList[i].Item1.Panel.BackColor= Color.Green;
+                    WinList[i].Item2.Panel.BackColor = Color.Green;
+                    WinList[i].Item3.Panel.BackColor = Color.Green;
+
+                    groupBox1.Enabled = false;
                     MessageBox.Show("black won");
                 }
                 else if (WinList[i].Item1.TileOccupier?.IsBlack == false
                     && WinList[i].Item2.TileOccupier?.IsBlack == false
                     && WinList[i].Item3.TileOccupier?.IsBlack == false)
                 {
+                    WinList[i].Item1.Panel.BackColor = Color.Green;
+                    WinList[i].Item2.Panel.BackColor = Color.Green;
+                    WinList[i].Item3.Panel.BackColor = Color.Green;
+
+                    groupBox1.Enabled = false;
                     MessageBox.Show("white won");
                 }
             }
@@ -231,7 +227,9 @@ namespace TicTacChessAbet
             }
 
             //if the Selected chess piece is once again clicked it will reset the selection 
-            if (TileDic[key].TileOccupier == SelectedChessPiece)
+            if (TileDic[key].TileOccupier == SelectedChessPiece
+                && !GameHasBegun
+                || TileDic[key].TileOccupier?.IsBlack == whitesTurn)
             {
                 SelectedChessPiece = null;
                 return;
@@ -244,11 +242,10 @@ namespace TicTacChessAbet
                 && GameHasBegun)
             {
                 SelectedChessPiece = TileDic[key].TileOccupier;
-                lblSelectedChessPiece.Text = SelectedChessPiece.Name;
                 SelectedChessPiece.Move(TileDic);
             }
             //otherwise it will place the selected chess piece on a tile that is placeable
-            else if (TileDic[key].isPlaceable && GameHasBegun)
+            else if (TileDic[key].isPlaceable && GameHasBegun && SelectedChessPiece != null)
             {
                 for (int i = 0; i < tiles.Count; i++)
                 {
@@ -259,41 +256,59 @@ namespace TicTacChessAbet
                 TileDic[a].TileOccupier = null;
 
                 SelectedChessPiece.SetPos(TileDic[key]);
+                if (whitesTurn)
+                {
+                    whitesTurn = false;
+                }
+                else
+                {
+                    whitesTurn = true;
+                }
                 UpdateManager();
                 SelectedChessPiece = null;
             }
-            else if (TileDic[key].isPlaceable && !GameHasBegun)
+            // needs rework
+            else if (TileDic[key].isPlaceable 
+                && !GameHasBegun
+                && SelectedChessPiece != null)
             {
-                for (int i = 0; i < tiles.Count; i++)
+                /*
+                    for (int i = 0; i < WhiteSelectablePieces.Count; i++)
                 {
-                    tiles[i].isPlaceable = false;
+                    WhiteSelectablePieces[i].Item1.BackgroundImage = Image.FromFile(basePath + WhiteSelectablePieces[i].Item2.ImgName);
+                }
+                */
+                SelectedChessPiece.SetPos(TileDic[key]);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < WhiteSelectablePieces.Count; j++)
+                    {
+                        if (tiles[i].TileOccupier == WhiteSelectablePieces[j].Item2)
+                        {
+                            WhiteSelectablePieces[j].Item1.Visible = false;
+                        }
+                    }
                 }
 
-                (int, int) a = TileDic.FirstOrDefault(x => x.Value.TileOccupier == SelectedChessPiece).Key;
+                for (int i = 6; i < 9; i++)
+                {
+                    for (int j = 0; j < BlackSelectablePieces.Count; j++)
+                    {
+                        if (tiles[i].TileOccupier == BlackSelectablePieces[j].Item2)
+                        {
+                            BlackSelectablePieces[j].Item1.Visible = false;
+                        }
+                    }
+                }
 
-                SelectedChessPiece.SetPos(TileDic[key]);
                 UpdateManager();
+                SelectedChessPiece = null;
             }
             else
             {
                 SelectedChessPiece = null;
             }
-
-            /*
-            richTextBox1.AppendText("\n \n \n");
-            for (int i = 0; i < tiles.Count; i++)
-            {
-                richTextBox1.AppendText("tiles[i].Panel.Name " + tiles[i].Panel.Name);
-                if (tiles[i].TileOccupier != null)
-                {
-                    richTextBox1.AppendText(" tiles[i].TileOccupier.Name " + tiles[i]?.TileOccupier.Name + "\n");
-                }
-                else
-                {
-                    richTextBox1.AppendText(" n/a \n");
-                }
-            }
-            */
         }
 
         #region testCode
@@ -382,6 +397,10 @@ namespace TicTacChessAbet
             tiles[1].isPlaceable= true;
             tiles[2].isPlaceable= true;
 
+            tiles[0].Panel.BackColor = Color.Yellow;
+            tiles[1].Panel.BackColor = Color.Yellow;
+            tiles[2].Panel.BackColor = Color.Yellow;
+
             Panel pnl = (Panel)sender;
             SelectedChessPiece = WhiteSelectablePieces.FirstOrDefault(x => x.Item1 == pnl).Item2;
             richTextBox1.AppendText("SelectedChessPiece = " + SelectedChessPiece.Name);
@@ -393,6 +412,10 @@ namespace TicTacChessAbet
             tiles[7].isPlaceable = true;
             tiles[8].isPlaceable = true;
 
+            tiles[6].Panel.BackColor = Color.Yellow;
+            tiles[7].Panel.BackColor = Color.Yellow;
+            tiles[8].Panel.BackColor = Color.Yellow;
+
             Panel pnl = (Panel)sender;
             SelectedChessPiece = BlackSelectablePieces.FirstOrDefault(x => x.Item1 == pnl).Item2;
             richTextBox1.AppendText("SelectedChessPiece = " + SelectedChessPiece.Name);
@@ -400,6 +423,22 @@ namespace TicTacChessAbet
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < 3; i++)
+            {
+                if (tiles[i].TileOccupier == null)
+                {
+                    return;
+                }
+            }
+
+            for (int i = 6; i < 9; i++)
+            {
+                if (tiles[i].TileOccupier == null)
+                {
+                    return;
+                }
+            }
+
             GameHasBegun = true;
             for (int i = 0; i < WhiteSelectablePieces.Count; i++)
             {
@@ -411,6 +450,28 @@ namespace TicTacChessAbet
                 BlackSelectablePieces[i].Item1.Enabled = false;
                 BlackSelectablePieces[i].Item1.Visible = false;
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < tiles.Count; i++)
+            {
+                tiles[i].TileOccupier = null;
+                tiles[i].Panel.BackColor = Color.White;
+            }
+            for (int i = 0; i < WhiteSelectablePieces.Count; i++)
+            {
+                WhiteSelectablePieces[i].Item1.Enabled = true;
+                WhiteSelectablePieces[i].Item1.Visible = true;
+            }
+            for (int i = 0; i < BlackSelectablePieces.Count; i++)
+            {
+                BlackSelectablePieces[i].Item1.Enabled = true;
+                BlackSelectablePieces[i].Item1.Visible = true;
+            }
+            whitesTurn = true;
+            GameHasBegun = false;
+            UpdateManager();
         }
     }
 

@@ -56,8 +56,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblSlectedPiece = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.lblSelectedChessPiece = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pnlSetupTileWhite4 = new System.Windows.Forms.Panel();
@@ -65,6 +63,7 @@
             this.pnlWhiteBanner = new System.Windows.Forms.Panel();
             this.pnlBlackBanner = new System.Windows.Forms.Panel();
             this.btnStartGame = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -256,7 +255,7 @@
             // 
             // increaseRow
             // 
-            this.increaseRow.Location = new System.Drawing.Point(600, 26);
+            this.increaseRow.Location = new System.Drawing.Point(1040, 435);
             this.increaseRow.Name = "increaseRow";
             this.increaseRow.Size = new System.Drawing.Size(87, 23);
             this.increaseRow.TabIndex = 9;
@@ -267,7 +266,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(625, 52);
+            this.label1.Location = new System.Drawing.Point(1065, 461);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 10;
@@ -275,7 +274,7 @@
             // 
             // decreaseRow
             // 
-            this.decreaseRow.Location = new System.Drawing.Point(600, 70);
+            this.decreaseRow.Location = new System.Drawing.Point(1040, 479);
             this.decreaseRow.Name = "decreaseRow";
             this.decreaseRow.Size = new System.Drawing.Size(87, 23);
             this.decreaseRow.TabIndex = 11;
@@ -285,7 +284,7 @@
             // 
             // decreaseCol
             // 
-            this.decreaseCol.Location = new System.Drawing.Point(707, 70);
+            this.decreaseCol.Location = new System.Drawing.Point(1147, 479);
             this.decreaseCol.Name = "decreaseCol";
             this.decreaseCol.Size = new System.Drawing.Size(87, 23);
             this.decreaseCol.TabIndex = 14;
@@ -296,7 +295,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(732, 52);
+            this.label2.Location = new System.Drawing.Point(1172, 461);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 15);
             this.label2.TabIndex = 13;
@@ -304,7 +303,7 @@
             // 
             // increaseCol
             // 
-            this.increaseCol.Location = new System.Drawing.Point(707, 26);
+            this.increaseCol.Location = new System.Drawing.Point(1147, 435);
             this.increaseCol.Name = "increaseCol";
             this.increaseCol.Size = new System.Drawing.Size(87, 23);
             this.increaseCol.TabIndex = 12;
@@ -315,7 +314,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(830, 52);
+            this.label3.Location = new System.Drawing.Point(1270, 461);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 15;
@@ -341,29 +340,9 @@
             this.lblSlectedPiece.TabIndex = 18;
             this.lblSlectedPiece.Text = "lorem";
             // 
-            // lblSelectedChessPiece
-            // 
-            this.lblSelectedChessPiece.AutoSize = true;
-            this.lblSelectedChessPiece.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSelectedChessPiece.Location = new System.Drawing.Point(44, 296);
-            this.lblSelectedChessPiece.Name = "lblSelectedChessPiece";
-            this.lblSelectedChessPiece.Size = new System.Drawing.Size(70, 30);
-            this.lblSelectedChessPiece.TabIndex = 20;
-            this.lblSelectedChessPiece.Text = "lorem";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(12, 266);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(203, 30);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "SelectedChessPiece";
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(588, 288);
+            this.button1.Location = new System.Drawing.Point(927, 425);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 21;
@@ -373,7 +352,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(588, 342);
+            this.button2.Location = new System.Drawing.Point(927, 479);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 22;
@@ -423,7 +402,7 @@
             // 
             // btnStartGame
             // 
-            this.btnStartGame.Location = new System.Drawing.Point(536, 130);
+            this.btnStartGame.Location = new System.Drawing.Point(12, 193);
             this.btnStartGame.Name = "btnStartGame";
             this.btnStartGame.Size = new System.Drawing.Size(127, 46);
             this.btnStartGame.TabIndex = 23;
@@ -431,11 +410,22 @@
             this.btnStartGame.UseVisualStyleBackColor = true;
             this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(12, 245);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(127, 46);
+            this.btnReset.TabIndex = 24;
+            this.btnReset.Text = "reset game";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1429, 576);
+            this.ClientSize = new System.Drawing.Size(1429, 669);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.pnlBlackBanner);
             this.Controls.Add(this.pnlWhiteBanner);
@@ -443,8 +433,6 @@
             this.Controls.Add(this.pnlSetupTileWhite4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.lblSelectedChessPiece);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblSlectedPiece);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -498,8 +486,6 @@
         private Label label4;
         private Label lblSlectedPiece;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Label lblSelectedChessPiece;
-        private Label label6;
         private Button button1;
         private Button button2;
         private Panel pnlSetupTileWhite4;
@@ -507,5 +493,6 @@
         private Panel pnlWhiteBanner;
         private Panel pnlBlackBanner;
         private Button btnStartGame;
+        private Button btnReset;
     }
 }
