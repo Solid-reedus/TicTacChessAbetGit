@@ -14,7 +14,9 @@ namespace TicTacChessAbet
 
         IchessPiece? SelectedChessPiece;
         bool whitesTurn = true;
-        bool GameHasBegun = false;
+        bool gameHasBegun = false;
+        int whiteScore = 0;
+        int blackScore = 0;
 
 
         Dictionary<(int, int), Tile> TileDic = new Dictionary<(int, int), Tile>();
@@ -41,8 +43,6 @@ namespace TicTacChessAbet
         List<(Panel, IchessPiece)> WhiteSelectablePieces = new List<(Panel, IchessPiece)>();
         List<(Panel, IchessPiece)> BlackSelectablePieces = new List<(Panel, IchessPiece)>();
 
-        //pnlSetupTileWhite1
-
         List<Tile> tiles = new List<Tile>();
         List<Panel> panels = new List<Panel>();
 
@@ -62,14 +62,7 @@ namespace TicTacChessAbet
             BlackChessPieces.Add(BlackQwn);
             BlackChessPieces.Add(BlackKgt);
 
-
             TileSetup();
-            richTextBox1.AppendText("\n");
-
-            for (int i = 0; i < tiles.Count; i++)
-            {
-                richTextBox1.AppendText("tiles["+ i +"] = " + tiles[i].Name + "\n");
-            }
 
             WinList.Add((tiles[3], tiles[4], tiles[5]));
 
@@ -171,6 +164,9 @@ namespace TicTacChessAbet
             }
 
             CheckWin();
+            lblcWhiteScore.Text = "white score:" + whiteScore;
+            lblBlackScore.Text = "black score:" + blackScore;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -180,11 +176,8 @@ namespace TicTacChessAbet
 
         private void CheckWin()
         {
-            richTextBox1.AppendText("\n check " +  WinList.Count +" \n");
-
             for (int i = 0; i < WinList.Count; i++)
             {
-
                 if (WinList[i].Item1.TileOccupier?.IsBlack == true
                     && WinList[i].Item2.TileOccupier?.IsBlack == true
                     && WinList[i].Item3.TileOccupier?.IsBlack == true)
@@ -195,6 +188,7 @@ namespace TicTacChessAbet
 
                     groupBox1.Enabled = false;
                     MessageBox.Show("black won");
+                    blackScore++;
                 }
                 else if (WinList[i].Item1.TileOccupier?.IsBlack == false
                     && WinList[i].Item2.TileOccupier?.IsBlack == false
@@ -206,6 +200,7 @@ namespace TicTacChessAbet
 
                     groupBox1.Enabled = false;
                     MessageBox.Show("white won");
+                    whiteScore++;
                 }
             }
         }
@@ -228,7 +223,7 @@ namespace TicTacChessAbet
 
             //if the Selected chess piece is once again clicked it will reset the selection 
             if (TileDic[key].TileOccupier == SelectedChessPiece
-                && !GameHasBegun
+                && !gameHasBegun
                 || TileDic[key].TileOccupier?.IsBlack == whitesTurn)
             {
                 SelectedChessPiece = null;
@@ -239,13 +234,13 @@ namespace TicTacChessAbet
             //highlight the posible positions with .move
             if (TileDic[key].TileOccupier != null
                 && SelectedChessPiece == null
-                && GameHasBegun)
+                && gameHasBegun)
             {
                 SelectedChessPiece = TileDic[key].TileOccupier;
-                SelectedChessPiece.Move(TileDic);
+                SelectedChessPiece?.Move(TileDic);
             }
             //otherwise it will place the selected chess piece on a tile that is placeable
-            else if (TileDic[key].isPlaceable && GameHasBegun && SelectedChessPiece != null)
+            else if (TileDic[key].isPlaceable && gameHasBegun && SelectedChessPiece != null)
             {
                 for (int i = 0; i < tiles.Count; i++)
                 {
@@ -269,7 +264,7 @@ namespace TicTacChessAbet
             }
             // needs rework
             else if (TileDic[key].isPlaceable 
-                && !GameHasBegun
+                && !gameHasBegun
                 && SelectedChessPiece != null)
             {
                 /*
@@ -311,86 +306,6 @@ namespace TicTacChessAbet
             }
         }
 
-        #region testCode
-
-        void updateIndexThingy()
-        {
-            label1.Text = rowIndex.ToString();
-            label2.Text = colIndex.ToString();
-
-            for (int i = 0; i < tiles.Count; i++)
-            {
-                tiles[i].Panel.BackColor = Color.White;
-            }
-
-            Tile tile = TileDic[(rowIndex, colIndex)];
-            tile.Panel.BackColor = Color.Black;
-            label3.Text = tile.Name;
-        }
-
-        private void increaseRow_Click(object sender, EventArgs e)
-        {
-            if (rowIndex < 2)
-            {
-                rowIndex++;
-            }
-            updateIndexThingy();
-        }
-
-        private void decreaseRow_Click(object sender, EventArgs e)
-        {
-            if (rowIndex > 0)
-            {
-                rowIndex--;
-            }
-            updateIndexThingy();
-        }
-
-        private void increaseCol_Click(object sender, EventArgs e)
-        {
-            if (colIndex < 2)
-            {
-                colIndex++;
-            }
-            updateIndexThingy();
-        }
-
-        private void decreaseCol_Click(object sender, EventArgs e)
-        {
-            if (colIndex > 0)
-            {
-                colIndex--;
-            }
-            updateIndexThingy();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            WhiteTw.Move(TileDic);
-            UpdateManager();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            WhiteQwn.SetPos(tiles[0]);
-            WhiteKgt.SetPos(tiles[1]);
-            WhiteTw.SetPos(tiles[2]);
-
-            //blackBis.SetPos(tiles[6]);
-            BlackQwn.SetPos(tiles[6]);
-            BlackKgt.SetPos(tiles[7]);
-            BlackTw.SetPos(tiles[8]);
-
-            UpdateManager();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            groupBox1.Enabled = false;
-            groupBox1.Visible = false;
-        }
-
         private void pnlSetupTileWhite1_Click(object sender, EventArgs e)
         {
             tiles[0].isPlaceable= true;
@@ -403,7 +318,6 @@ namespace TicTacChessAbet
 
             Panel pnl = (Panel)sender;
             SelectedChessPiece = WhiteSelectablePieces.FirstOrDefault(x => x.Item1 == pnl).Item2;
-            richTextBox1.AppendText("SelectedChessPiece = " + SelectedChessPiece.Name);
         }
 
         private void pnlSetupTileBlack1_Click(object sender, EventArgs e)
@@ -418,7 +332,6 @@ namespace TicTacChessAbet
 
             Panel pnl = (Panel)sender;
             SelectedChessPiece = BlackSelectablePieces.FirstOrDefault(x => x.Item1 == pnl).Item2;
-            richTextBox1.AppendText("SelectedChessPiece = " + SelectedChessPiece.Name);
         }
 
         private void btnStartGame_Click(object sender, EventArgs e)
@@ -439,7 +352,7 @@ namespace TicTacChessAbet
                 }
             }
 
-            GameHasBegun = true;
+
             for (int i = 0; i < WhiteSelectablePieces.Count; i++)
             {
                 WhiteSelectablePieces[i].Item1.Enabled = false;
@@ -450,6 +363,8 @@ namespace TicTacChessAbet
                 BlackSelectablePieces[i].Item1.Enabled = false;
                 BlackSelectablePieces[i].Item1.Visible = false;
             }
+            lblStatus.Text = "game has started";
+            gameHasBegun = true;
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -470,10 +385,9 @@ namespace TicTacChessAbet
                 BlackSelectablePieces[i].Item1.Visible = true;
             }
             whitesTurn = true;
-            GameHasBegun = false;
+            gameHasBegun = false;
+            groupBox1.Enabled = true;
             UpdateManager();
         }
     }
-
-    #endregion
 }

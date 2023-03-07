@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlChessTileC3 = new System.Windows.Forms.Panel();
             this.pnlChessTileB3 = new System.Windows.Forms.Panel();
             this.pnlChessTileC2 = new System.Windows.Forms.Panel();
@@ -38,7 +37,6 @@
             this.pnlChessTileA2 = new System.Windows.Forms.Panel();
             this.pnlChessTileB1 = new System.Windows.Forms.Panel();
             this.pnlChessTileA1 = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlSetupTileWhite1 = new System.Windows.Forms.Panel();
             this.pnlSetupTileWhite2 = new System.Windows.Forms.Panel();
@@ -46,24 +44,18 @@
             this.pnlSetupTileBlack1 = new System.Windows.Forms.Panel();
             this.pnlSetupTileBlack2 = new System.Windows.Forms.Panel();
             this.pnlSetupTileBlack3 = new System.Windows.Forms.Panel();
-            this.increaseRow = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.decreaseRow = new System.Windows.Forms.Button();
-            this.decreaseCol = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.increaseCol = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblSlectedPiece = new System.Windows.Forms.Label();
+            this.lblText = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.pnlSetupTileWhite4 = new System.Windows.Forms.Panel();
             this.pnlSetupTileBlack4 = new System.Windows.Forms.Panel();
             this.pnlWhiteBanner = new System.Windows.Forms.Panel();
             this.pnlBlackBanner = new System.Windows.Forms.Panel();
             this.btnStartGame = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.lblcWhiteScore = new System.Windows.Forms.Label();
+            this.lblBlackScore = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,17 +158,11 @@
             this.pnlChessTileA1.UseWaitCursor = true;
             this.pnlChessTileA1.Click += new System.EventHandler(this.pnlChessTileA1_Click);
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(914, 36);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(472, 366);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.groupBox1.BackgroundImage = global::TicTacChessAbet.Properties.Resources.Image3;
+            this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.groupBox1.Controls.Add(this.pnlChessTileC3);
             this.groupBox1.Controls.Add(this.pnlChessTileA1);
             this.groupBox1.Controls.Add(this.pnlChessTileB3);
@@ -253,112 +239,26 @@
             this.pnlSetupTileBlack3.TabIndex = 8;
             this.pnlSetupTileBlack3.Click += new System.EventHandler(this.pnlSetupTileBlack1_Click);
             // 
-            // increaseRow
+            // lblText
             // 
-            this.increaseRow.Location = new System.Drawing.Point(1040, 435);
-            this.increaseRow.Name = "increaseRow";
-            this.increaseRow.Size = new System.Drawing.Size(87, 23);
-            this.increaseRow.TabIndex = 9;
-            this.increaseRow.Text = "increaseRow";
-            this.increaseRow.UseVisualStyleBackColor = true;
-            this.increaseRow.Click += new System.EventHandler(this.increaseRow_Click);
+            this.lblText.AutoSize = true;
+            this.lblText.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblText.Location = new System.Drawing.Point(35, 239);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(68, 30);
+            this.lblText.TabIndex = 17;
+            this.lblText.Text = "status";
             // 
-            // label1
+            // lblStatus
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1065, 461);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "label1";
-            // 
-            // decreaseRow
-            // 
-            this.decreaseRow.Location = new System.Drawing.Point(1040, 479);
-            this.decreaseRow.Name = "decreaseRow";
-            this.decreaseRow.Size = new System.Drawing.Size(87, 23);
-            this.decreaseRow.TabIndex = 11;
-            this.decreaseRow.Text = "decreaseRow";
-            this.decreaseRow.UseVisualStyleBackColor = true;
-            this.decreaseRow.Click += new System.EventHandler(this.decreaseRow_Click);
-            // 
-            // decreaseCol
-            // 
-            this.decreaseCol.Location = new System.Drawing.Point(1147, 479);
-            this.decreaseCol.Name = "decreaseCol";
-            this.decreaseCol.Size = new System.Drawing.Size(87, 23);
-            this.decreaseCol.TabIndex = 14;
-            this.decreaseCol.Text = "decreaseCol";
-            this.decreaseCol.UseVisualStyleBackColor = true;
-            this.decreaseCol.Click += new System.EventHandler(this.decreaseCol_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1172, 461);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "label2";
-            // 
-            // increaseCol
-            // 
-            this.increaseCol.Location = new System.Drawing.Point(1147, 435);
-            this.increaseCol.Name = "increaseCol";
-            this.increaseCol.Size = new System.Drawing.Size(87, 23);
-            this.increaseCol.TabIndex = 12;
-            this.increaseCol.Text = "increaseCol";
-            this.increaseCol.UseVisualStyleBackColor = true;
-            this.increaseCol.Click += new System.EventHandler(this.increaseCol_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1270, 461);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 15);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "label3";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(12, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(151, 30);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "selected piece";
-            // 
-            // lblSlectedPiece
-            // 
-            this.lblSlectedPiece.AutoSize = true;
-            this.lblSlectedPiece.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSlectedPiece.Location = new System.Drawing.Point(44, 160);
-            this.lblSlectedPiece.Name = "lblSlectedPiece";
-            this.lblSlectedPiece.Size = new System.Drawing.Size(70, 30);
-            this.lblSlectedPiece.TabIndex = 18;
-            this.lblSlectedPiece.Text = "lorem";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(927, 425);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(927, 479);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblStatus.Location = new System.Drawing.Point(3, 269);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(168, 30);
+            this.lblStatus.TabIndex = 18;
+            this.lblStatus.Text = "place the pieces";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlSetupTileWhite4
             // 
@@ -383,9 +283,9 @@
             // pnlWhiteBanner
             // 
             this.pnlWhiteBanner.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pnlWhiteBanner.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlWhiteBanner.BackgroundImage")));
+            this.pnlWhiteBanner.BackgroundImage = global::TicTacChessAbet.Properties.Resources.Image755;
             this.pnlWhiteBanner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlWhiteBanner.Location = new System.Drawing.Point(44, 12);
+            this.pnlWhiteBanner.Location = new System.Drawing.Point(49, 12);
             this.pnlWhiteBanner.Name = "pnlWhiteBanner";
             this.pnlWhiteBanner.Size = new System.Drawing.Size(90, 90);
             this.pnlWhiteBanner.TabIndex = 4;
@@ -393,7 +293,7 @@
             // pnlBlackBanner
             // 
             this.pnlBlackBanner.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pnlBlackBanner.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlBlackBanner.BackgroundImage")));
+            this.pnlBlackBanner.BackgroundImage = global::TicTacChessAbet.Properties.Resources.Image756;
             this.pnlBlackBanner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlBlackBanner.Location = new System.Drawing.Point(44, 437);
             this.pnlBlackBanner.Name = "pnlBlackBanner";
@@ -402,9 +302,10 @@
             // 
             // btnStartGame
             // 
-            this.btnStartGame.Location = new System.Drawing.Point(12, 193);
+            this.btnStartGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnStartGame.Location = new System.Drawing.Point(12, 138);
             this.btnStartGame.Name = "btnStartGame";
-            this.btnStartGame.Size = new System.Drawing.Size(127, 46);
+            this.btnStartGame.Size = new System.Drawing.Size(159, 46);
             this.btnStartGame.TabIndex = 23;
             this.btnStartGame.Text = "start game";
             this.btnStartGame.UseVisualStyleBackColor = true;
@@ -412,36 +313,60 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(12, 245);
+            this.btnReset.Location = new System.Drawing.Point(12, 190);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(127, 46);
+            this.btnReset.Size = new System.Drawing.Size(159, 46);
             this.btnReset.TabIndex = 24;
             this.btnReset.Text = "reset game";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // lblcWhiteScore
+            // 
+            this.lblcWhiteScore.AutoSize = true;
+            this.lblcWhiteScore.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblcWhiteScore.Location = new System.Drawing.Point(12, 105);
+            this.lblcWhiteScore.Name = "lblcWhiteScore";
+            this.lblcWhiteScore.Size = new System.Drawing.Size(128, 30);
+            this.lblcWhiteScore.TabIndex = 25;
+            this.lblcWhiteScore.Text = "white score:";
+            // 
+            // lblBlackScore
+            // 
+            this.lblBlackScore.AutoSize = true;
+            this.lblBlackScore.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBlackScore.Location = new System.Drawing.Point(12, 404);
+            this.lblBlackScore.Name = "lblBlackScore";
+            this.lblBlackScore.Size = new System.Drawing.Size(126, 30);
+            this.lblBlackScore.TabIndex = 26;
+            this.lblBlackScore.Text = "black score:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(3, 322);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 45);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "hint:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1429, 669);
+            this.ClientSize = new System.Drawing.Size(617, 536);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblBlackScore);
+            this.Controls.Add(this.lblcWhiteScore);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.pnlBlackBanner);
             this.Controls.Add(this.pnlWhiteBanner);
             this.Controls.Add(this.pnlSetupTileBlack4);
             this.Controls.Add(this.pnlSetupTileWhite4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.lblSlectedPiece);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.decreaseCol);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.increaseCol);
-            this.Controls.Add(this.decreaseRow);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.increaseRow);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.lblText);
             this.Controls.Add(this.pnlSetupTileBlack1);
             this.Controls.Add(this.pnlSetupTileBlack2);
             this.Controls.Add(this.pnlSetupTileWhite1);
@@ -449,7 +374,6 @@
             this.Controls.Add(this.pnlSetupTileWhite2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pnlSetupTileWhite3);
-            this.Controls.Add(this.richTextBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
@@ -459,7 +383,6 @@
         }
 
         #endregion
-        private RichTextBox richTextBox1;
         private Panel pnlChessTileC3;
         private Panel pnlChessTileB3;
         private Panel pnlChessTileC2;
@@ -476,23 +399,17 @@
         private Panel pnlSetupTileBlack1;
         private Panel pnlSetupTileBlack2;
         private Panel pnlSetupTileBlack3;
-        private Button increaseRow;
-        private Label label1;
-        private Button decreaseRow;
-        private Button decreaseCol;
-        private Label label2;
-        private Button increaseCol;
-        private Label label3;
-        private Label label4;
-        private Label lblSlectedPiece;
+        private Label lblText;
+        private Label lblStatus;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Button button1;
-        private Button button2;
         private Panel pnlSetupTileWhite4;
         private Panel pnlSetupTileBlack4;
         private Panel pnlWhiteBanner;
         private Panel pnlBlackBanner;
         private Button btnStartGame;
         private Button btnReset;
+        private Label lblcWhiteScore;
+        private Label lblBlackScore;
+        private Label label4;
     }
 }
