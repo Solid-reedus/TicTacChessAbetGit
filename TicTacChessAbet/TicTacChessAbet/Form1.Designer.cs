@@ -68,7 +68,7 @@
             this.pnlChessTileC3.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileC3.TabIndex = 5;
             this.pnlChessTileC3.UseWaitCursor = true;
-            this.pnlChessTileC3.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileC3.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // pnlChessTileB3
             // 
@@ -79,7 +79,7 @@
             this.pnlChessTileB3.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileB3.TabIndex = 5;
             this.pnlChessTileB3.UseWaitCursor = true;
-            this.pnlChessTileB3.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileB3.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // pnlChessTileC2
             // 
@@ -90,7 +90,7 @@
             this.pnlChessTileC2.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileC2.TabIndex = 4;
             this.pnlChessTileC2.UseWaitCursor = true;
-            this.pnlChessTileC2.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileC2.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // pnlChessTileA3
             // 
@@ -101,7 +101,7 @@
             this.pnlChessTileA3.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileA3.TabIndex = 2;
             this.pnlChessTileA3.UseWaitCursor = true;
-            this.pnlChessTileA3.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileA3.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // pnlChessTileC1
             // 
@@ -112,7 +112,7 @@
             this.pnlChessTileC1.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileC1.TabIndex = 3;
             this.pnlChessTileC1.UseWaitCursor = true;
-            this.pnlChessTileC1.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileC1.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // pnlChessTileB2
             // 
@@ -123,7 +123,7 @@
             this.pnlChessTileB2.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileB2.TabIndex = 4;
             this.pnlChessTileB2.UseWaitCursor = true;
-            this.pnlChessTileB2.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileB2.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // pnlChessTileA2
             // 
@@ -134,7 +134,7 @@
             this.pnlChessTileA2.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileA2.TabIndex = 2;
             this.pnlChessTileA2.UseWaitCursor = true;
-            this.pnlChessTileA2.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileA2.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // pnlChessTileB1
             // 
@@ -145,7 +145,7 @@
             this.pnlChessTileB1.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileB1.TabIndex = 3;
             this.pnlChessTileB1.UseWaitCursor = true;
-            this.pnlChessTileB1.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileB1.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // pnlChessTileA1
             // 
@@ -156,7 +156,7 @@
             this.pnlChessTileA1.Size = new System.Drawing.Size(90, 90);
             this.pnlChessTileA1.TabIndex = 1;
             this.pnlChessTileA1.UseWaitCursor = true;
-            this.pnlChessTileA1.Click += new System.EventHandler(this.pnlChessTileA1_Click);
+            this.pnlChessTileA1.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
             // groupBox1
             // 
@@ -243,7 +243,7 @@
             // 
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblText.Location = new System.Drawing.Point(35, 239);
+            this.lblText.Location = new System.Drawing.Point(44, 541);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(68, 30);
             this.lblText.TabIndex = 17;
@@ -253,7 +253,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblStatus.Location = new System.Drawing.Point(3, 269);
+            this.lblStatus.Location = new System.Drawing.Point(118, 541);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(168, 30);
             this.lblStatus.TabIndex = 18;
@@ -345,7 +345,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(3, 322);
+            this.label4.Location = new System.Drawing.Point(44, 573);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 45);
             this.label4.TabIndex = 27;
@@ -355,7 +355,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 536);
+            this.ClientSize = new System.Drawing.Size(617, 627);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblBlackScore);
             this.Controls.Add(this.lblcWhiteScore);

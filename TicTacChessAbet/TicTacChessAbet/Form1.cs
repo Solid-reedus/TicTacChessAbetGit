@@ -10,7 +10,7 @@ namespace TicTacChessAbet
     {
         // IMPORTANT bishop/queen need code rework
         // IMPORTANT pieces before game start code rework needed
-
+        // IMPORTANT placement bug
 
         IchessPiece? SelectedChessPiece;
         bool whitesTurn = true;
@@ -18,14 +18,10 @@ namespace TicTacChessAbet
         int whiteScore = 0;
         int blackScore = 0;
 
-
         Dictionary<(int, int), Tile> TileDic = new Dictionary<(int, int), Tile>();
         List<(Tile, Tile, Tile)> WinList = new List<(Tile, Tile, Tile)>();
 
         //Dictionary<Tile, (int, int)> IndexDic = new Dictionary<Tile, (int, int)>();
-
-        int rowIndex = 0;
-        int colIndex = 0;
 
         TowerChessPiece  BlackTw = new TowerChessPiece("blackTw", true);
         KnightChessPiece BlackKgt = new KnightChessPiece("blackKgt", true);
@@ -79,7 +75,6 @@ namespace TicTacChessAbet
         void TileSetup()
         {
             List<string> names = new List<string>();
-
 
             panels.Add(pnlChessTileA1);
             panels.Add(pnlChessTileA2);
@@ -166,12 +161,11 @@ namespace TicTacChessAbet
             CheckWin();
             lblcWhiteScore.Text = "white score:" + whiteScore;
             lblBlackScore.Text = "black score:" + blackScore;
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            UpdateManager();
+
         }
 
         private void CheckWin()
@@ -205,7 +199,7 @@ namespace TicTacChessAbet
             }
         }
 
-        private void pnlChessTileA1_Click(object sender, EventArgs e)
+        private void pnlChessTiles_Click(object sender, EventArgs e)
         {
             Panel pnl = (Panel)sender;
             (int, int) key = TileDic.FirstOrDefault(x => x.Value.Name == pnl.Name).Key;
@@ -213,7 +207,6 @@ namespace TicTacChessAbet
             //if there isnt a pawn selected then it will select a pawn and run .move
             //otherwise it will place the pawn on the placeable place
             //and if itself its pressed it will reset the selection
-
 
             //this will make all tiles white for visibility
             for (int i = 0; i < panels.Count; i++)
@@ -226,6 +219,7 @@ namespace TicTacChessAbet
                 && !gameHasBegun
                 || TileDic[key].TileOccupier?.IsBlack == whitesTurn)
             {
+                lblStatus.Text = "no piece selected";
                 SelectedChessPiece = null;
                 return;
             }
@@ -237,6 +231,7 @@ namespace TicTacChessAbet
                 && gameHasBegun)
             {
                 SelectedChessPiece = TileDic[key].TileOccupier;
+                lblStatus.Text = SelectedChessPiece.Name + " is selected";
                 SelectedChessPiece?.Move(TileDic);
             }
             //otherwise it will place the selected chess piece on a tile that is placeable
@@ -259,6 +254,7 @@ namespace TicTacChessAbet
                 {
                     whitesTurn = true;
                 }
+                lblStatus.Text = SelectedChessPiece.Name + "has been placed on row " + key.Item1 + " and col " + key.Item2;
                 UpdateManager();
                 SelectedChessPiece = null;
             }
@@ -267,12 +263,11 @@ namespace TicTacChessAbet
                 && !gameHasBegun
                 && SelectedChessPiece != null)
             {
-                /*
-                    for (int i = 0; i < WhiteSelectablePieces.Count; i++)
+                for (int i = 0; i < tiles.Count; i++)
                 {
-                    WhiteSelectablePieces[i].Item1.BackgroundImage = Image.FromFile(basePath + WhiteSelectablePieces[i].Item2.ImgName);
+                    tiles[i].isPlaceable = false;
                 }
-                */
+
                 SelectedChessPiece.SetPos(TileDic[key]);
 
                 for (int i = 0; i < 3; i++)
@@ -285,7 +280,6 @@ namespace TicTacChessAbet
                         }
                     }
                 }
-
                 for (int i = 6; i < 9; i++)
                 {
                     for (int j = 0; j < BlackSelectablePieces.Count; j++)
@@ -389,5 +383,6 @@ namespace TicTacChessAbet
             groupBox1.Enabled = true;
             UpdateManager();
         }
+
     }
 }
