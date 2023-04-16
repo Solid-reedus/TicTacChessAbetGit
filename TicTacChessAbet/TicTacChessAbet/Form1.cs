@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Numerics;
 using System.Reflection;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace TicTacChessAbet
 {
@@ -11,6 +12,9 @@ namespace TicTacChessAbet
         // IMPORTANT bishop/queen need code rework
         // IMPORTANT pieces before game start code rework needed
         // IMPORTANT placement bug
+
+        SerialPort serialPort = new SerialPort();
+
 
         IchessPiece? SelectedChessPiece;
         bool whitesTurn = true;
@@ -43,6 +47,19 @@ namespace TicTacChessAbet
         List<Panel> panels = new List<Panel>();
 
         string basePath = "Resources//images//";
+
+        readonly Tuple<int, int>[] coordinates = 
+        {
+            Tuple.Create(320, 20),
+            Tuple.Create(400, 135),
+            Tuple.Create(570, 245),
+            Tuple.Create(850, 0),
+            Tuple.Create(900, 110),
+            Tuple.Create(1050, 200),
+            Tuple.Create(1330, 0),
+            Tuple.Create(1400, 95),
+            Tuple.Create(1520, 175)
+        };
 
         public Form1()
         {
@@ -115,7 +132,9 @@ namespace TicTacChessAbet
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    tiles.Add(new Tile(i, j, panels[val].Name, panels[val]));
+                    tiles.Add(new Tile(i, j, 
+                        panels[val].Name, panels[val], 
+                        coordinates[val].Item1, coordinates[val].Item2));
                     val++;
                 }
             }
@@ -165,7 +184,7 @@ namespace TicTacChessAbet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void CheckWin()
@@ -256,7 +275,16 @@ namespace TicTacChessAbet
                 }
                 lblStatus.Text = SelectedChessPiece.Name + "has been placed on row " + key.Item1 + " and col " + key.Item2;
                 UpdateManager();
+
                 SelectedChessPiece = null;
+
+                //this is some debug code 
+                // TileDic[a] is where the arm should pick up the piece
+                // TileDic[key] is there it should be dropped
+                /*
+                MessageBox.Show($"posStart = {TileDic[a].Horizontal} and {TileDic[a].Rotation} " +
+                    $"to = {TileDic[key].Horizontal} and {TileDic[key].Rotation}");
+                */
             }
             // needs rework
             else if (TileDic[key].isPlaceable 

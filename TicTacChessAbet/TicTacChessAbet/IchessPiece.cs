@@ -18,6 +18,5 @@ namespace TicTacChessAbet
         //movement
         public void Move(Dictionary<(int, int), Tile> _dic) { }
         void SetPos(Tile _tile) { }
-
     }
 }

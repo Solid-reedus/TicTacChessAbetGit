@@ -15,12 +15,17 @@ namespace TicTacChessAbet
         public IchessPiece? TileOccupier;
         public bool isPlaceable;
 
-        public Tile( int _row, int _column, string _name, Panel _panel)
+        public int Horizontal { get; private set; }
+        public int Rotation { get; private set; }
+
+        public Tile( int _row, int _column, string _name, Panel _panel, int _horizontal, int _rotation)
         {
             Row = _row;
             Column = _column;
             Name = _name;
             Panel = _panel;
+            Horizontal = _horizontal;
+            Rotation = _rotation;
         }
 
     }
