@@ -16,21 +16,10 @@ namespace TicTacChessAbet
         public int yAxis { private set; get; }
         public int xAxis { private set; get; }
 
-
-        public WizardChessPiece(string _name, bool _isBlack)
-        {
-            Name = _name;
-            IsBlack = _isBlack;
-
-            if (IsBlack)
-            {
-                ImgName = "Assassin.png";
-            }
-            else
-            {
-                ImgName = "Tunnenler.png";
-            }
-        }
+        //the wizard movement is split in 2 parts because of its nature
+        //this part of the code checks each unoccupied place
+        //the second code in the form checks if the clicked piece is one of its own
+        //if so swap
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
             for (int i = 0; i < 3; i++)
@@ -58,5 +47,19 @@ namespace TicTacChessAbet
             _tile.TileOccupier = this;
         }
 
+        public WizardChessPiece(string _name, bool _isBlack)
+        {
+            Name = _name;
+            IsBlack = _isBlack;
+
+            if (IsBlack)
+            {
+                ImgName = "Assassin.png";
+            }
+            else
+            {
+                ImgName = "Tunnenler.png";
+            }
+        }
     }
 }

@@ -321,11 +321,14 @@ namespace TicTacChessAbet
                 && gameHasBegun)
             {
                 SelectedChessPiece = TileDic[key].TileOccupier;
-                lblStatus.Text = SelectedChessPiece.Name + " is selected";
+                lblStatus.Text = SelectedChessPiece?.Name + " is selected";
                 SelectedChessPiece?.Move(TileDic);
             }
             //otherwise it will place the selected chess piece on a tile that is placeable
-            else if (TileDic[key].isPlaceable && gameHasBegun && SelectedChessPiece != null)
+            else if (TileDic[key].isPlaceable && 
+                gameHasBegun && 
+                TileDic[key]?.TileOccupier != SelectedChessPiece &&
+                SelectedChessPiece != null)
             {
                 for (int i = 0; i < tiles.Count; i++)
                 {
@@ -367,14 +370,6 @@ namespace TicTacChessAbet
                 {
                     PickNDrop(TileDic[a].Horizontal, TileDic[a].Rotation , TileDic[key].Horizontal, TileDic[key].Rotation);
                 }
-
-                //this is some debug code 
-                // TileDic[a] is where the arm should pick up the piece
-                // TileDic[key] is there it should be dropped
-                /*
-                MessageBox.Show($"posStart = {TileDic[a].Horizontal} and {TileDic[a].Rotation} " +
-                    $"to = {TileDic[key].Horizontal} and {TileDic[key].Rotation}");
-                */
             }
             // needs rework
             else if (TileDic[key].isPlaceable 
@@ -385,11 +380,6 @@ namespace TicTacChessAbet
                 {
                     tiles[i].isPlaceable = false;
                 }
-
-                //if (SelectedChessPiece is WizardChessPiece)
-                //{
-                    
-                //}
 
                 SelectedChessPiece.SetPos(TileDic[key]);
 

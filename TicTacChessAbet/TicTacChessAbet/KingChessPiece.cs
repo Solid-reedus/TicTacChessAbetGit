@@ -37,6 +37,8 @@ namespace TicTacChessAbet
             _tile.TileOccupier = this;
         }
 
+        //the kings movement works by checking each postion adjacent to it
+        //and looking if its occupied or out of bounds
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
             List<Tuple<int, int>> moves = new List<Tuple<int, int>>

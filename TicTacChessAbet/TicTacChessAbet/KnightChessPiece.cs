@@ -16,6 +16,8 @@ namespace TicTacChessAbet
         public int yAxis { private set; get; }
         public int xAxis { private set; get; }
 
+        //the knights movement works by checking each position relative to him that makes a L shape
+        //then its checks if the position is occupied or out of bounds
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
             List<Tuple<int, int>> moves = new List<Tuple<int, int>>

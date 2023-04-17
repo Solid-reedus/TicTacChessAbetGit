@@ -15,8 +15,9 @@ namespace TicTacChessAbet
         public int yAxis { private set; get; }
         public int xAxis { private set; get; }
 
-        //int IchessPiece.xAxis => throw new NotImplementedException();
-
+        //the queen works by combinging the rook and the bishop code
+        //it will go through a for loop relative to its self and check if the tile is occupied
+        //if so it will break and go to the next loop, otherwise its placeable
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
             //r

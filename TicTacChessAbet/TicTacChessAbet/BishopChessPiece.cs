@@ -16,7 +16,10 @@ namespace TicTacChessAbet
         public int yAxis { private set; get; }
         public int xAxis { private set; get; }
 
-
+        //the bishop is able to move based on 4 for loops 
+        //it will diagonally check foreach tile
+        //if its occupied by a other piece it will break the loop
+        //and if its out of bounds it will break the loop too
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
             List<Tile> tiles = new List<Tile>();

@@ -16,6 +16,9 @@ namespace TicTacChessAbet
         public int yAxis { private set; get; }
         public int xAxis { private set; get; }
 
+        //the rook works by 4 for in loops that go in 4 directions that
+        //go through the board and check if its occupied
+        //if so the loop will break and go to the next loop
         public void Move(Dictionary<(int, int), Tile> _dic)
         {
             List<Tile> tiles = new List<Tile>();
