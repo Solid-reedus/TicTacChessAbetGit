@@ -6,30 +6,40 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using serialPortDot6Test;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection.Emit;
 
 namespace TicTacChessAbet
 {
     public partial class Form1 : Form
     {
-        // IMPORTANT sucktion and pickup dont work
-
         // IMPORTANT bishop/queen need code rework
         // IMPORTANT pieces before game start code rework needed
         // IMPORTANT placement bug
 
+        //this class manages the connection between the c# game and the adruino robot
+        //this class works by giving it comands
         QueManager queManager;
 
+        //this is a nullable IchessPiece that will temporarily save the selected chess piece
         IchessPiece? SelectedChessPiece;
+
         bool whitesTurn = true;
         bool gameHasBegun = false;
         int whiteScore = 0;
         int blackScore = 0;
 
+        //these bools are for checking the states of the arduino code
+        bool usingArduino = false;
+        bool connected = false;
+        bool AdruinoReady = false;
+
+        //TileDic is a Dictionary that accepts 2 ints that is used to lookup a tile with coordinates
         Dictionary<(int, int), Tile> TileDic = new Dictionary<(int, int), Tile>();
+
+        //this is a list of all possible winnable combinations for both white and black
         List<(Tile, Tile, Tile)> WinList = new List<(Tile, Tile, Tile)>();
 
-        //Dictionary<Tile, (int, int)> IndexDic = new Dictionary<Tile, (int, int)>();
-
+        //all the pieces will get instantiated at the beginning
         TowerChessPiece  BlackTw = new TowerChessPiece("black tower",    true);
         KnightChessPiece BlackKgt = new KnightChessPiece("black knight", true);
         QueenChessPiece  BlackQwn = new QueenChessPiece("black queen",   true);
@@ -44,17 +54,25 @@ namespace TicTacChessAbet
         KingChessPiece   WhiteKng = new KingChessPiece("white king",     false);
         WizardChessPiece WhiteWzd = new WizardChessPiece("white wizard", false);
 
+        //this is a list of eachs players pieces
         List<IchessPiece> WhiteChessPieces = new List<IchessPiece>();
         List<IchessPiece> BlackChessPieces = new List<IchessPiece>();
 
+        //here it will be defined where the piece will be selectable
         List<(Panel, IchessPiece)> WhiteSelectablePieces = new List<(Panel, IchessPiece)>();
         List<(Panel, IchessPiece)> BlackSelectablePieces = new List<(Panel, IchessPiece)>();
 
-        List<Tile> tiles = new List<Tile>();
+        //these two list manage most of the playable board
+        //panels contain all of the panels and gets parented to the tile
+        //the tile class manages all the playable board code and contains all a tiles 
+        //information
         List<Panel> panels = new List<Panel>();
+        List<Tile>? tiles = new List<Tile>();
 
         string basePath = "Resources//images//";
 
+        //this is a list of coordinates that gets used by the arduino arm to place and 
+        //pick up all the pieces
         readonly Tuple<int, int>[] coordinates = 
         {
             Tuple.Create(320, 20),
@@ -68,6 +86,8 @@ namespace TicTacChessAbet
             Tuple.Create(1520, 175)
         };
 
+        //in the form when the game loads a lot of lists a filled to later dynamicly be able
+        //to change and eddit code
         public Form1()
         {
             InitializeComponent();
@@ -102,10 +122,9 @@ namespace TicTacChessAbet
             UpdateManager();
         }
 
+        //this method set ups the tiles to be able to use later
         void TileSetup()
         {
-            List<string> names = new List<string>();
-
             panels.Add(pnlChessTileA1);
             panels.Add(pnlChessTileA2);
             panels.Add(pnlChessTileA3);
@@ -169,6 +188,7 @@ namespace TicTacChessAbet
             TileDic.Add((2, 2), tiles[8]);
         }
 
+        //this code will visually update the board and other minor images 
         void UpdateManager()
         {
             for (int i = 0; i < tiles.Count; i++)
@@ -194,32 +214,66 @@ namespace TicTacChessAbet
                 pnlBlackBanner.BackColor = Color.Green;
             }
 
+            if (connected)
+            {
+                gbxInoSettings.BackColor = Color.Green;
+            }
+
             CheckWin();
             lblcWhiteScore.Text = "white score:" + whiteScore;
             lblBlackScore.Text = "black score:" + blackScore;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
+        //this code check if someone won
+        //it will first check 2 specific unique 3 rows
+        //then it will go through a list twice to for both players
         private void CheckWin()
         {
+            //checks blacks unique win rows
+            if (tiles[0].TileOccupier?.IsBlack == true &&
+                tiles[1].TileOccupier?.IsBlack == true &&
+                tiles[2].TileOccupier?.IsBlack == true)
+            {
+                tiles[0].Panel.BackColor = Color.Green;
+                tiles[1].Panel.BackColor = Color.Green;
+                tiles[2].Panel.BackColor = Color.Green;
+
+                gbxTiles.Enabled = false;
+                MessageBox.Show("black won");
+                blackScore++;
+            }
+            
+            //checks blacks unique win rows
+            if (tiles[6].TileOccupier?.IsBlack == false &&
+                tiles[7].TileOccupier?.IsBlack == false &&
+                tiles[8].TileOccupier?.IsBlack == false)
+            {
+                tiles[6].Panel.BackColor = Color.Green;
+                tiles[7].Panel.BackColor = Color.Green;
+                tiles[8].Panel.BackColor = Color.Green;
+
+                gbxTiles.Enabled = false;
+                MessageBox.Show("white won");
+                whiteScore++;
+            }
+
+            //checks both in a list
             for (int i = 0; i < WinList.Count; i++)
             {
+                //checks if black won
                 if (WinList[i].Item1.TileOccupier?.IsBlack == true
                     && WinList[i].Item2.TileOccupier?.IsBlack == true
                     && WinList[i].Item3.TileOccupier?.IsBlack == true)
                 {
-                    WinList[i].Item1.Panel.BackColor= Color.Green;
+                    WinList[i].Item1.Panel.BackColor = Color.Green;
                     WinList[i].Item2.Panel.BackColor = Color.Green;
                     WinList[i].Item3.Panel.BackColor = Color.Green;
 
-                    groupBox1.Enabled = false;
+                    gbxTiles.Enabled = false;
                     MessageBox.Show("black won");
                     blackScore++;
                 }
+                //checks if white won
                 else if (WinList[i].Item1.TileOccupier?.IsBlack == false
                     && WinList[i].Item2.TileOccupier?.IsBlack == false
                     && WinList[i].Item3.TileOccupier?.IsBlack == false)
@@ -228,7 +282,7 @@ namespace TicTacChessAbet
                     WinList[i].Item2.Panel.BackColor = Color.Green;
                     WinList[i].Item3.Panel.BackColor = Color.Green;
 
-                    groupBox1.Enabled = false;
+                    gbxTiles.Enabled = false;
                     MessageBox.Show("white won");
                     whiteScore++;
                 }
@@ -279,9 +333,22 @@ namespace TicTacChessAbet
                 }
 
                 (int, int) a = TileDic.FirstOrDefault(x => x.Value.TileOccupier == SelectedChessPiece).Key;
-                TileDic[a].TileOccupier = null;
 
-                SelectedChessPiece.SetPos(TileDic[key]);
+                //TileDic[a].TileOccupier == clicked item
+                if (TileDic[a].TileOccupier != null && TileDic[key].TileOccupier == null)
+                {
+                    TileDic[a].TileOccupier = null;
+                    SelectedChessPiece.SetPos(TileDic[key]);
+                }
+                else if (SelectedChessPiece is WizardChessPiece && 
+                    TileDic[a]?.TileOccupier?.IsBlack == TileDic[key]?.TileOccupier?.IsBlack)
+                {
+                    IchessPiece swpPiece = TileDic[key].TileOccupier;
+                    IchessPiece wizPiece = TileDic[a].TileOccupier;
+                    TileDic[key].TileOccupier = wizPiece;
+                    TileDic[a].TileOccupier = swpPiece;
+                }
+
                 if (whitesTurn)
                 {
                     whitesTurn = false;
@@ -290,13 +357,16 @@ namespace TicTacChessAbet
                 {
                     whitesTurn = true;
                 }
+
                 lblStatus.Text = SelectedChessPiece.Name + "has been placed on row " + key.Item1 + " and col " + key.Item2;
                 UpdateManager();
 
                 SelectedChessPiece = null;
 
-                PickNDrop(TileDic[a].Horizontal, TileDic[a].Rotation , TileDic[key].Horizontal, TileDic[key].Rotation);
-
+                if (usingArduino && connected)
+                {
+                    PickNDrop(TileDic[a].Horizontal, TileDic[a].Rotation , TileDic[key].Horizontal, TileDic[key].Rotation);
+                }
 
                 //this is some debug code 
                 // TileDic[a] is where the arm should pick up the piece
@@ -315,6 +385,11 @@ namespace TicTacChessAbet
                 {
                     tiles[i].isPlaceable = false;
                 }
+
+                //if (SelectedChessPiece is WizardChessPiece)
+                //{
+                    
+                //}
 
                 SelectedChessPiece.SetPos(TileDic[key]);
 
@@ -405,6 +480,10 @@ namespace TicTacChessAbet
                 BlackSelectablePieces[i].Item1.Enabled = false;
                 BlackSelectablePieces[i].Item1.Visible = false;
             }
+
+            gbxWhiteLabels.Visible = false;
+            gbxBlackLabels.Visible = false;
+
             lblStatus.Text = "game has started";
             gameHasBegun = true;
         }
@@ -428,7 +507,7 @@ namespace TicTacChessAbet
             }
             whitesTurn = true;
             gameHasBegun = false;
-            groupBox1.Enabled = true;
+            gbxTiles.Enabled = true;
             UpdateManager();
         }
 
@@ -436,10 +515,23 @@ namespace TicTacChessAbet
         {
             if (cbxUsingArduino.Checked)
             {
+                
+                pnlSetupTileWhite6.Visible = false;
+                pnlSetupTileWhite6.Enabled = false;
+                pnlSetupTileBlack6.Visible = false;
+                pnlSetupTileBlack6.Enabled = false;
+
+                usingArduino = true;
                 gbxInoSettings.Visible = true;
             }
             else
             {
+                pnlSetupTileWhite6.Visible = true;
+                pnlSetupTileWhite6.Enabled = true;
+                pnlSetupTileBlack6.Visible = true;
+                pnlSetupTileBlack6.Enabled = true;
+
+                usingArduino = false;
                 gbxInoSettings.Visible = false;
             }
         }
@@ -489,10 +581,10 @@ namespace TicTacChessAbet
                 return;
             }
 
-            queManager = new QueManager(cbxPorts.Text);
+            queManager = new QueManager(cbxPorts.Text, ref connected);
             Thread thread = new Thread(() =>
             {
-                queManager.Ready();
+                queManager.Ready(ref AdruinoReady);
             });
             thread.Start();
         }

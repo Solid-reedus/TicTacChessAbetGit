@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TicTacChessAbet
 {
@@ -29,6 +30,32 @@ namespace TicTacChessAbet
             {
                 ImgName = "Tunnenler.png";
             }
+        }
+        public void Move(Dictionary<(int, int), Tile> _dic)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (_dic[(i, j)].TileOccupier == null)
+                    {
+                        _dic[(i, j)].Panel.BackColor = Color.Green;
+                        _dic[(i, j)].isPlaceable = true;
+                    }
+                    else if (_dic[(i, j)].TileOccupier.IsBlack == IsBlack)
+                    {
+                        _dic[(i, j)].Panel.BackColor = Color.Purple;
+                        _dic[(i, j)].isPlaceable = true;
+                    }
+                }
+            }
+        }
+
+        public void SetPos(Tile _tile)
+        {
+            xAxis = _tile.Row;
+            yAxis = _tile.Column;
+            _tile.TileOccupier = this;
         }
 
     }

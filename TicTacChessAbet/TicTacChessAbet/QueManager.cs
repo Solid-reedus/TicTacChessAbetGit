@@ -16,9 +16,11 @@ namespace serialPortDot6Test
     {
         SerialPort serialPort;
         List<string> log = new List<string>();
+
+
         bool isPickedUp = false;
 
-        public QueManager(string _portName)
+        public QueManager(string _portName, ref bool _connected)
         {
             serialPort = new SerialPort();
             serialPort.PortName = _portName;
@@ -37,6 +39,15 @@ namespace serialPortDot6Test
                 {
                     MessageBox.Show("error cant open serialPort");
                 }
+            }
+
+            if (serialPort.IsOpen)
+            {
+                _connected = true;
+            }
+            else
+            {
+                _connected = false;
             }
         }
 
@@ -81,7 +92,7 @@ namespace serialPortDot6Test
         }
 
         //this code will ready the machine by zeroing and positioning the machine
-        public void Ready()
+        public void Ready(ref bool _isReady)
         {
             WriteArduino("ZS:0");
 
@@ -105,6 +116,7 @@ namespace serialPortDot6Test
                 }
                 Thread.Sleep(100);
             }
+            _isReady = true;
         }
 
         //this will return the private log
@@ -159,17 +171,10 @@ namespace serialPortDot6Test
                 WriteArduino("CS:1");
                 Thread.Sleep(500);
                 WriteArduino("SS:1");
-                isPickedUp = true;
-            }
-            else
-            {
-                WriteArduino("CS:0");
                 Thread.Sleep(500);
-                WriteArduino("SS:0");
-                isPickedUp = false;
 
-                Thread.Sleep(2000);
                 WriteArduino("VS:950");
+                Thread.Sleep(500);
                 while (true)
                 {
                     if (GetLastLines("VS:Ready"))
@@ -178,7 +183,16 @@ namespace serialPortDot6Test
                     }
                     Thread.Sleep(100);
                 }
+                isPickedUp = true;
             }
+            else
+            {
+                WriteArduino("CS:0");
+                Thread.Sleep(500);
+                WriteArduino("SS:0");
+                isPickedUp = false;
+            }
+            
         }
 
         //this function gets the last 3 lines from the log (if its long enough)

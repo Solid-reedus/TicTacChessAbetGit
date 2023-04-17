@@ -37,7 +37,7 @@
             this.pnlChessTileA2 = new System.Windows.Forms.Panel();
             this.pnlChessTileB1 = new System.Windows.Forms.Panel();
             this.pnlChessTileA1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbxTiles = new System.Windows.Forms.GroupBox();
             this.pnlSetupTileWhite1 = new System.Windows.Forms.Panel();
             this.pnlSetupTileWhite2 = new System.Windows.Forms.Panel();
             this.pnlSetupTileWhite3 = new System.Windows.Forms.Panel();
@@ -65,8 +65,24 @@
             this.pnlSetupTileWhite6 = new System.Windows.Forms.Panel();
             this.pnlSetupTileBlack6 = new System.Windows.Forms.Panel();
             this.pnlSetupTileBlack5 = new System.Windows.Forms.Panel();
-            this.groupBox1.SuspendLayout();
+            this.lblWhiteRook = new System.Windows.Forms.Label();
+            this.lblWhiteBishop = new System.Windows.Forms.Label();
+            this.lblWhiteQueen = new System.Windows.Forms.Label();
+            this.lblWhiteKnight = new System.Windows.Forms.Label();
+            this.lblWhiteKing = new System.Windows.Forms.Label();
+            this.lblWhiteWizard = new System.Windows.Forms.Label();
+            this.gbxWhiteLabels = new System.Windows.Forms.GroupBox();
+            this.gbxBlackLabels = new System.Windows.Forms.GroupBox();
+            this.lblBlackRook = new System.Windows.Forms.Label();
+            this.lblBlackBishop = new System.Windows.Forms.Label();
+            this.lblBlackQueen = new System.Windows.Forms.Label();
+            this.lblBlackKnight = new System.Windows.Forms.Label();
+            this.lblBlackKing = new System.Windows.Forms.Label();
+            this.lblBlackWizard = new System.Windows.Forms.Label();
+            this.gbxTiles.SuspendLayout();
             this.gbxInoSettings.SuspendLayout();
+            this.gbxWhiteLabels.SuspendLayout();
+            this.gbxBlackLabels.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlChessTileC3
@@ -168,32 +184,32 @@
             this.pnlChessTileA1.UseWaitCursor = true;
             this.pnlChessTileA1.Click += new System.EventHandler(this.pnlChessTiles_Click);
             // 
-            // groupBox1
+            // gbxTiles
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.BackgroundImage = global::TicTacChessAbet.Properties.Resources.Image3;
-            this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.groupBox1.Controls.Add(this.pnlChessTileC3);
-            this.groupBox1.Controls.Add(this.pnlChessTileA1);
-            this.groupBox1.Controls.Add(this.pnlChessTileB3);
-            this.groupBox1.Controls.Add(this.pnlChessTileB1);
-            this.groupBox1.Controls.Add(this.pnlChessTileC2);
-            this.groupBox1.Controls.Add(this.pnlChessTileA2);
-            this.groupBox1.Controls.Add(this.pnlChessTileA3);
-            this.groupBox1.Controls.Add(this.pnlChessTileB2);
-            this.groupBox1.Controls.Add(this.pnlChessTileC1);
-            this.groupBox1.Location = new System.Drawing.Point(308, 105);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(299, 323);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.UseWaitCursor = true;
+            this.gbxTiles.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.gbxTiles.BackgroundImage = global::TicTacChessAbet.Properties.Resources.Image3;
+            this.gbxTiles.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.gbxTiles.Controls.Add(this.pnlChessTileC3);
+            this.gbxTiles.Controls.Add(this.pnlChessTileA1);
+            this.gbxTiles.Controls.Add(this.pnlChessTileB3);
+            this.gbxTiles.Controls.Add(this.pnlChessTileB1);
+            this.gbxTiles.Controls.Add(this.pnlChessTileC2);
+            this.gbxTiles.Controls.Add(this.pnlChessTileA2);
+            this.gbxTiles.Controls.Add(this.pnlChessTileA3);
+            this.gbxTiles.Controls.Add(this.pnlChessTileB2);
+            this.gbxTiles.Controls.Add(this.pnlChessTileC1);
+            this.gbxTiles.Location = new System.Drawing.Point(301, 133);
+            this.gbxTiles.Name = "gbxTiles";
+            this.gbxTiles.Size = new System.Drawing.Size(299, 323);
+            this.gbxTiles.TabIndex = 6;
+            this.gbxTiles.TabStop = false;
+            this.gbxTiles.UseWaitCursor = true;
             // 
             // pnlSetupTileWhite1
             // 
             this.pnlSetupTileWhite1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileWhite1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileWhite1.Location = new System.Drawing.Point(191, 12);
+            this.pnlSetupTileWhite1.Location = new System.Drawing.Point(184, 40);
             this.pnlSetupTileWhite1.Name = "pnlSetupTileWhite1";
             this.pnlSetupTileWhite1.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileWhite1.TabIndex = 3;
@@ -203,7 +219,7 @@
             // 
             this.pnlSetupTileWhite2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileWhite2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileWhite2.Location = new System.Drawing.Point(287, 12);
+            this.pnlSetupTileWhite2.Location = new System.Drawing.Point(280, 40);
             this.pnlSetupTileWhite2.Name = "pnlSetupTileWhite2";
             this.pnlSetupTileWhite2.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileWhite2.TabIndex = 4;
@@ -213,7 +229,7 @@
             // 
             this.pnlSetupTileWhite3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileWhite3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileWhite3.Location = new System.Drawing.Point(383, 12);
+            this.pnlSetupTileWhite3.Location = new System.Drawing.Point(376, 40);
             this.pnlSetupTileWhite3.Name = "pnlSetupTileWhite3";
             this.pnlSetupTileWhite3.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileWhite3.TabIndex = 5;
@@ -223,7 +239,7 @@
             // 
             this.pnlSetupTileBlack1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileBlack1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileBlack1.Location = new System.Drawing.Point(191, 437);
+            this.pnlSetupTileBlack1.Location = new System.Drawing.Point(184, 483);
             this.pnlSetupTileBlack1.Name = "pnlSetupTileBlack1";
             this.pnlSetupTileBlack1.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileBlack1.TabIndex = 6;
@@ -233,7 +249,7 @@
             // 
             this.pnlSetupTileBlack2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileBlack2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileBlack2.Location = new System.Drawing.Point(287, 437);
+            this.pnlSetupTileBlack2.Location = new System.Drawing.Point(280, 483);
             this.pnlSetupTileBlack2.Name = "pnlSetupTileBlack2";
             this.pnlSetupTileBlack2.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileBlack2.TabIndex = 7;
@@ -243,7 +259,7 @@
             // 
             this.pnlSetupTileBlack3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileBlack3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileBlack3.Location = new System.Drawing.Point(383, 437);
+            this.pnlSetupTileBlack3.Location = new System.Drawing.Point(376, 483);
             this.pnlSetupTileBlack3.Name = "pnlSetupTileBlack3";
             this.pnlSetupTileBlack3.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileBlack3.TabIndex = 8;
@@ -253,7 +269,7 @@
             // 
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblText.Location = new System.Drawing.Point(44, 541);
+            this.lblText.Location = new System.Drawing.Point(70, 587);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(68, 30);
             this.lblText.TabIndex = 17;
@@ -263,7 +279,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblStatus.Location = new System.Drawing.Point(118, 541);
+            this.lblStatus.Location = new System.Drawing.Point(144, 587);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(168, 30);
             this.lblStatus.TabIndex = 18;
@@ -274,7 +290,7 @@
             // 
             this.pnlSetupTileWhite4.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileWhite4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileWhite4.Location = new System.Drawing.Point(479, 12);
+            this.pnlSetupTileWhite4.Location = new System.Drawing.Point(472, 40);
             this.pnlSetupTileWhite4.Name = "pnlSetupTileWhite4";
             this.pnlSetupTileWhite4.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileWhite4.TabIndex = 4;
@@ -284,7 +300,7 @@
             // 
             this.pnlSetupTileBlack4.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileBlack4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileBlack4.Location = new System.Drawing.Point(479, 437);
+            this.pnlSetupTileBlack4.Location = new System.Drawing.Point(472, 483);
             this.pnlSetupTileBlack4.Name = "pnlSetupTileBlack4";
             this.pnlSetupTileBlack4.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileBlack4.TabIndex = 5;
@@ -295,7 +311,7 @@
             this.pnlWhiteBanner.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlWhiteBanner.BackgroundImage = global::TicTacChessAbet.Properties.Resources.Image755;
             this.pnlWhiteBanner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlWhiteBanner.Location = new System.Drawing.Point(49, 12);
+            this.pnlWhiteBanner.Location = new System.Drawing.Point(12, 40);
             this.pnlWhiteBanner.Name = "pnlWhiteBanner";
             this.pnlWhiteBanner.Size = new System.Drawing.Size(90, 90);
             this.pnlWhiteBanner.TabIndex = 4;
@@ -305,7 +321,7 @@
             this.pnlBlackBanner.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlBlackBanner.BackgroundImage = global::TicTacChessAbet.Properties.Resources.Image756;
             this.pnlBlackBanner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlBlackBanner.Location = new System.Drawing.Point(44, 437);
+            this.pnlBlackBanner.Location = new System.Drawing.Point(12, 483);
             this.pnlBlackBanner.Name = "pnlBlackBanner";
             this.pnlBlackBanner.Size = new System.Drawing.Size(90, 90);
             this.pnlBlackBanner.TabIndex = 5;
@@ -313,7 +329,7 @@
             // btnStartGame
             // 
             this.btnStartGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnStartGame.Location = new System.Drawing.Point(12, 138);
+            this.btnStartGame.Location = new System.Drawing.Point(5, 166);
             this.btnStartGame.Name = "btnStartGame";
             this.btnStartGame.Size = new System.Drawing.Size(159, 46);
             this.btnStartGame.TabIndex = 23;
@@ -323,7 +339,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(12, 190);
+            this.btnReset.Location = new System.Drawing.Point(5, 218);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(159, 46);
             this.btnReset.TabIndex = 24;
@@ -335,7 +351,7 @@
             // 
             this.lblcWhiteScore.AutoSize = true;
             this.lblcWhiteScore.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblcWhiteScore.Location = new System.Drawing.Point(12, 105);
+            this.lblcWhiteScore.Location = new System.Drawing.Point(5, 133);
             this.lblcWhiteScore.Name = "lblcWhiteScore";
             this.lblcWhiteScore.Size = new System.Drawing.Size(128, 30);
             this.lblcWhiteScore.TabIndex = 25;
@@ -345,7 +361,7 @@
             // 
             this.lblBlackScore.AutoSize = true;
             this.lblBlackScore.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblBlackScore.Location = new System.Drawing.Point(12, 404);
+            this.lblBlackScore.Location = new System.Drawing.Point(12, 450);
             this.lblBlackScore.Name = "lblBlackScore";
             this.lblBlackScore.Size = new System.Drawing.Size(126, 30);
             this.lblBlackScore.TabIndex = 26;
@@ -355,7 +371,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(44, 573);
+            this.label4.Location = new System.Drawing.Point(70, 619);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 45);
             this.label4.TabIndex = 27;
@@ -365,7 +381,7 @@
             // 
             this.cbxUsingArduino.AutoSize = true;
             this.cbxUsingArduino.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbxUsingArduino.Location = new System.Drawing.Point(14, 242);
+            this.cbxUsingArduino.Location = new System.Drawing.Point(606, 136);
             this.cbxUsingArduino.Name = "cbxUsingArduino";
             this.cbxUsingArduino.Size = new System.Drawing.Size(148, 29);
             this.cbxUsingArduino.TabIndex = 28;
@@ -380,7 +396,7 @@
             this.gbxInoSettings.Controls.Add(this.cbxPorts);
             this.gbxInoSettings.Controls.Add(this.btnSearchPtr);
             this.gbxInoSettings.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.gbxInoSettings.Location = new System.Drawing.Point(12, 277);
+            this.gbxInoSettings.Location = new System.Drawing.Point(606, 171);
             this.gbxInoSettings.Name = "gbxInoSettings";
             this.gbxInoSettings.Size = new System.Drawing.Size(159, 124);
             this.gbxInoSettings.TabIndex = 29;
@@ -419,43 +435,185 @@
             // 
             this.pnlSetupTileWhite5.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileWhite5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileWhite5.Location = new System.Drawing.Point(575, 12);
+            this.pnlSetupTileWhite5.Location = new System.Drawing.Point(568, 40);
             this.pnlSetupTileWhite5.Name = "pnlSetupTileWhite5";
             this.pnlSetupTileWhite5.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileWhite5.TabIndex = 5;
+            this.pnlSetupTileWhite5.Click += new System.EventHandler(this.pnlSetupTileWhite1_Click);
             // 
             // pnlSetupTileWhite6
             // 
             this.pnlSetupTileWhite6.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileWhite6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileWhite6.Location = new System.Drawing.Point(671, 12);
+            this.pnlSetupTileWhite6.Location = new System.Drawing.Point(664, 40);
             this.pnlSetupTileWhite6.Name = "pnlSetupTileWhite6";
             this.pnlSetupTileWhite6.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileWhite6.TabIndex = 5;
+            this.pnlSetupTileWhite6.Click += new System.EventHandler(this.pnlSetupTileWhite1_Click);
             // 
             // pnlSetupTileBlack6
             // 
             this.pnlSetupTileBlack6.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileBlack6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileBlack6.Location = new System.Drawing.Point(671, 437);
+            this.pnlSetupTileBlack6.Location = new System.Drawing.Point(664, 483);
             this.pnlSetupTileBlack6.Name = "pnlSetupTileBlack6";
             this.pnlSetupTileBlack6.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileBlack6.TabIndex = 9;
+            this.pnlSetupTileBlack6.Click += new System.EventHandler(this.pnlSetupTileBlack1_Click);
             // 
             // pnlSetupTileBlack5
             // 
             this.pnlSetupTileBlack5.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlSetupTileBlack5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSetupTileBlack5.Location = new System.Drawing.Point(575, 437);
+            this.pnlSetupTileBlack5.Location = new System.Drawing.Point(568, 483);
             this.pnlSetupTileBlack5.Name = "pnlSetupTileBlack5";
             this.pnlSetupTileBlack5.Size = new System.Drawing.Size(90, 90);
             this.pnlSetupTileBlack5.TabIndex = 10;
+            this.pnlSetupTileBlack5.Click += new System.EventHandler(this.pnlSetupTileBlack1_Click);
+            // 
+            // lblWhiteRook
+            // 
+            this.lblWhiteRook.AutoSize = true;
+            this.lblWhiteRook.Location = new System.Drawing.Point(0, 10);
+            this.lblWhiteRook.Name = "lblWhiteRook";
+            this.lblWhiteRook.Size = new System.Drawing.Size(31, 15);
+            this.lblWhiteRook.TabIndex = 30;
+            this.lblWhiteRook.Text = "rook";
+            // 
+            // lblWhiteBishop
+            // 
+            this.lblWhiteBishop.AutoSize = true;
+            this.lblWhiteBishop.Location = new System.Drawing.Point(96, 10);
+            this.lblWhiteBishop.Name = "lblWhiteBishop";
+            this.lblWhiteBishop.Size = new System.Drawing.Size(43, 15);
+            this.lblWhiteBishop.TabIndex = 31;
+            this.lblWhiteBishop.Text = "bishop";
+            // 
+            // lblWhiteQueen
+            // 
+            this.lblWhiteQueen.AutoSize = true;
+            this.lblWhiteQueen.Location = new System.Drawing.Point(192, 10);
+            this.lblWhiteQueen.Name = "lblWhiteQueen";
+            this.lblWhiteQueen.Size = new System.Drawing.Size(40, 15);
+            this.lblWhiteQueen.TabIndex = 32;
+            this.lblWhiteQueen.Text = "queen";
+            // 
+            // lblWhiteKnight
+            // 
+            this.lblWhiteKnight.AutoSize = true;
+            this.lblWhiteKnight.Location = new System.Drawing.Point(288, 10);
+            this.lblWhiteKnight.Name = "lblWhiteKnight";
+            this.lblWhiteKnight.Size = new System.Drawing.Size(41, 15);
+            this.lblWhiteKnight.TabIndex = 33;
+            this.lblWhiteKnight.Text = "knight";
+            // 
+            // lblWhiteKing
+            // 
+            this.lblWhiteKing.AutoSize = true;
+            this.lblWhiteKing.Location = new System.Drawing.Point(384, 10);
+            this.lblWhiteKing.Name = "lblWhiteKing";
+            this.lblWhiteKing.Size = new System.Drawing.Size(30, 15);
+            this.lblWhiteKing.TabIndex = 34;
+            this.lblWhiteKing.Text = "king";
+            // 
+            // lblWhiteWizard
+            // 
+            this.lblWhiteWizard.AutoSize = true;
+            this.lblWhiteWizard.Location = new System.Drawing.Point(480, 10);
+            this.lblWhiteWizard.Name = "lblWhiteWizard";
+            this.lblWhiteWizard.Size = new System.Drawing.Size(41, 15);
+            this.lblWhiteWizard.TabIndex = 35;
+            this.lblWhiteWizard.Text = "wizard";
+            // 
+            // gbxWhiteLabels
+            // 
+            this.gbxWhiteLabels.Controls.Add(this.lblWhiteRook);
+            this.gbxWhiteLabels.Controls.Add(this.lblWhiteBishop);
+            this.gbxWhiteLabels.Controls.Add(this.lblWhiteQueen);
+            this.gbxWhiteLabels.Controls.Add(this.lblWhiteKnight);
+            this.gbxWhiteLabels.Controls.Add(this.lblWhiteKing);
+            this.gbxWhiteLabels.Controls.Add(this.lblWhiteWizard);
+            this.gbxWhiteLabels.Location = new System.Drawing.Point(184, 3);
+            this.gbxWhiteLabels.Name = "gbxWhiteLabels";
+            this.gbxWhiteLabels.Size = new System.Drawing.Size(570, 31);
+            this.gbxWhiteLabels.TabIndex = 42;
+            this.gbxWhiteLabels.TabStop = false;
+            // 
+            // gbxBlackLabels
+            // 
+            this.gbxBlackLabels.Controls.Add(this.lblBlackRook);
+            this.gbxBlackLabels.Controls.Add(this.lblBlackBishop);
+            this.gbxBlackLabels.Controls.Add(this.lblBlackQueen);
+            this.gbxBlackLabels.Controls.Add(this.lblBlackKnight);
+            this.gbxBlackLabels.Controls.Add(this.lblBlackKing);
+            this.gbxBlackLabels.Controls.Add(this.lblBlackWizard);
+            this.gbxBlackLabels.Location = new System.Drawing.Point(184, 450);
+            this.gbxBlackLabels.Name = "gbxBlackLabels";
+            this.gbxBlackLabels.Size = new System.Drawing.Size(570, 31);
+            this.gbxBlackLabels.TabIndex = 43;
+            this.gbxBlackLabels.TabStop = false;
+            // 
+            // lblBlackRook
+            // 
+            this.lblBlackRook.AutoSize = true;
+            this.lblBlackRook.Location = new System.Drawing.Point(0, 10);
+            this.lblBlackRook.Name = "lblBlackRook";
+            this.lblBlackRook.Size = new System.Drawing.Size(31, 15);
+            this.lblBlackRook.TabIndex = 30;
+            this.lblBlackRook.Text = "rook";
+            // 
+            // lblBlackBishop
+            // 
+            this.lblBlackBishop.AutoSize = true;
+            this.lblBlackBishop.Location = new System.Drawing.Point(96, 10);
+            this.lblBlackBishop.Name = "lblBlackBishop";
+            this.lblBlackBishop.Size = new System.Drawing.Size(43, 15);
+            this.lblBlackBishop.TabIndex = 31;
+            this.lblBlackBishop.Text = "bishop";
+            // 
+            // lblBlackQueen
+            // 
+            this.lblBlackQueen.AutoSize = true;
+            this.lblBlackQueen.Location = new System.Drawing.Point(192, 10);
+            this.lblBlackQueen.Name = "lblBlackQueen";
+            this.lblBlackQueen.Size = new System.Drawing.Size(40, 15);
+            this.lblBlackQueen.TabIndex = 32;
+            this.lblBlackQueen.Text = "queen";
+            // 
+            // lblBlackKnight
+            // 
+            this.lblBlackKnight.AutoSize = true;
+            this.lblBlackKnight.Location = new System.Drawing.Point(288, 10);
+            this.lblBlackKnight.Name = "lblBlackKnight";
+            this.lblBlackKnight.Size = new System.Drawing.Size(41, 15);
+            this.lblBlackKnight.TabIndex = 33;
+            this.lblBlackKnight.Text = "knight";
+            // 
+            // lblBlackKing
+            // 
+            this.lblBlackKing.AutoSize = true;
+            this.lblBlackKing.Location = new System.Drawing.Point(384, 10);
+            this.lblBlackKing.Name = "lblBlackKing";
+            this.lblBlackKing.Size = new System.Drawing.Size(30, 15);
+            this.lblBlackKing.TabIndex = 34;
+            this.lblBlackKing.Text = "king";
+            // 
+            // lblBlackWizard
+            // 
+            this.lblBlackWizard.AutoSize = true;
+            this.lblBlackWizard.Location = new System.Drawing.Point(480, 10);
+            this.lblBlackWizard.Name = "lblBlackWizard";
+            this.lblBlackWizard.Size = new System.Drawing.Size(41, 15);
+            this.lblBlackWizard.TabIndex = 35;
+            this.lblBlackWizard.Text = "wizard";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 627);
+            this.ClientSize = new System.Drawing.Size(932, 669);
+            this.Controls.Add(this.gbxBlackLabels);
+            this.Controls.Add(this.gbxWhiteLabels);
             this.Controls.Add(this.pnlSetupTileBlack6);
             this.Controls.Add(this.pnlSetupTileWhite6);
             this.Controls.Add(this.pnlSetupTileBlack5);
@@ -478,12 +636,16 @@
             this.Controls.Add(this.pnlSetupTileWhite1);
             this.Controls.Add(this.pnlSetupTileBlack3);
             this.Controls.Add(this.pnlSetupTileWhite2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbxTiles);
             this.Controls.Add(this.pnlSetupTileWhite3);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.groupBox1.ResumeLayout(false);
+            this.gbxTiles.ResumeLayout(false);
             this.gbxInoSettings.ResumeLayout(false);
+            this.gbxWhiteLabels.ResumeLayout(false);
+            this.gbxWhiteLabels.PerformLayout();
+            this.gbxBlackLabels.ResumeLayout(false);
+            this.gbxBlackLabels.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,7 +661,7 @@
         private Panel pnlChessTileA2;
         private Panel pnlChessTileB1;
         private Panel pnlChessTileA1;
-        private GroupBox groupBox1;
+        private GroupBox gbxTiles;
         private Panel pnlSetupTileWhite1;
         private Panel pnlSetupTileWhite2;
         private Panel pnlSetupTileWhite3;
@@ -527,5 +689,19 @@
         private Panel pnlSetupTileWhite6;
         private Panel pnlSetupTileBlack6;
         private Panel pnlSetupTileBlack5;
+        private Label lblWhiteRook;
+        private Label lblWhiteBishop;
+        private Label lblWhiteQueen;
+        private Label lblWhiteKnight;
+        private Label lblWhiteKing;
+        private Label lblWhiteWizard;
+        private GroupBox gbxWhiteLabels;
+        private GroupBox gbxBlackLabels;
+        private Label lblBlackRook;
+        private Label lblBlackBishop;
+        private Label lblBlackQueen;
+        private Label lblBlackKnight;
+        private Label lblBlackKing;
+        private Label lblBlackWizard;
     }
 }
