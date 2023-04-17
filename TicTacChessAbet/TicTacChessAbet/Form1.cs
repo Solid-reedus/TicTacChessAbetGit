@@ -4,17 +4,20 @@ using System.Numerics;
 using System.Reflection;
 using System.Windows.Forms;
 using System.IO.Ports;
+using serialPortDot6Test;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TicTacChessAbet
 {
     public partial class Form1 : Form
     {
+        // IMPORTANT sucktion and pickup dont work
+
         // IMPORTANT bishop/queen need code rework
         // IMPORTANT pieces before game start code rework needed
         // IMPORTANT placement bug
 
-        SerialPort serialPort = new SerialPort();
-
+        QueManager queManager;
 
         IchessPiece? SelectedChessPiece;
         bool whitesTurn = true;
@@ -27,15 +30,19 @@ namespace TicTacChessAbet
 
         //Dictionary<Tile, (int, int)> IndexDic = new Dictionary<Tile, (int, int)>();
 
-        TowerChessPiece  BlackTw = new TowerChessPiece("blackTw", true);
-        KnightChessPiece BlackKgt = new KnightChessPiece("blackKgt", true);
-        QueenChessPiece  BlackQwn = new QueenChessPiece("blackQwn", true);
-        BishopChessPiece BlackBis = new BishopChessPiece("blackBis", true);
+        TowerChessPiece  BlackTw = new TowerChessPiece("black tower",    true);
+        KnightChessPiece BlackKgt = new KnightChessPiece("black knight", true);
+        QueenChessPiece  BlackQwn = new QueenChessPiece("black queen",   true);
+        BishopChessPiece BlackBis = new BishopChessPiece("black bishop", true);
+        KingChessPiece   BlackKng = new KingChessPiece("black king",     true);
+        WizardChessPiece BlackWzd = new WizardChessPiece("black wizard", true);
 
-        KnightChessPiece WhiteKgt = new KnightChessPiece("whiteKgt", false);
-        QueenChessPiece  WhiteQwn = new QueenChessPiece("whiteQwn", false);
-        TowerChessPiece  WhiteTw = new TowerChessPiece("whiteTw", false);
-        BishopChessPiece WhiteBis = new BishopChessPiece("whiteBis", false);
+        TowerChessPiece  WhiteTw = new TowerChessPiece("white tower",    false);
+        KnightChessPiece WhiteKgt = new KnightChessPiece("white knight", false);
+        QueenChessPiece  WhiteQwn = new QueenChessPiece("white queen",   false);
+        BishopChessPiece WhiteBis = new BishopChessPiece("white bishop", false);
+        KingChessPiece   WhiteKng = new KingChessPiece("white king",     false);
+        WizardChessPiece WhiteWzd = new WizardChessPiece("white wizard", false);
 
         List<IchessPiece> WhiteChessPieces = new List<IchessPiece>();
         List<IchessPiece> BlackChessPieces = new List<IchessPiece>();
@@ -65,15 +72,21 @@ namespace TicTacChessAbet
         {
             InitializeComponent();
 
+            gbxInoSettings.Visible = false;
+
             WhiteChessPieces.Add(WhiteTw);
             WhiteChessPieces.Add(WhiteBis);
             WhiteChessPieces.Add(WhiteQwn);
             WhiteChessPieces.Add(WhiteKgt);
+            WhiteChessPieces.Add(WhiteKng);
+            WhiteChessPieces.Add(WhiteWzd);
 
             BlackChessPieces.Add(BlackTw);
             BlackChessPieces.Add(BlackBis);
             BlackChessPieces.Add(BlackQwn);
             BlackChessPieces.Add(BlackKgt);
+            BlackChessPieces.Add(BlackKng);
+            BlackChessPieces.Add(BlackWzd);
 
             TileSetup();
 
@@ -110,11 +123,15 @@ namespace TicTacChessAbet
             WhiteSelectablePieces.Add((pnlSetupTileWhite2, WhiteChessPieces[1]));
             WhiteSelectablePieces.Add((pnlSetupTileWhite3, WhiteChessPieces[2]));
             WhiteSelectablePieces.Add((pnlSetupTileWhite4, WhiteChessPieces[3]));
+            WhiteSelectablePieces.Add((pnlSetupTileWhite5, WhiteChessPieces[4]));
+            WhiteSelectablePieces.Add((pnlSetupTileWhite6, WhiteChessPieces[5]));
 
             BlackSelectablePieces.Add((pnlSetupTileBlack1, BlackChessPieces[0]));
             BlackSelectablePieces.Add((pnlSetupTileBlack2, BlackChessPieces[1]));
             BlackSelectablePieces.Add((pnlSetupTileBlack3, BlackChessPieces[2]));
             BlackSelectablePieces.Add((pnlSetupTileBlack4, BlackChessPieces[3]));
+            BlackSelectablePieces.Add((pnlSetupTileBlack5, BlackChessPieces[4]));
+            BlackSelectablePieces.Add((pnlSetupTileBlack6, BlackChessPieces[5]));
 
             for (int i = 0; i < WhiteSelectablePieces.Count; i++)
             {
@@ -278,6 +295,9 @@ namespace TicTacChessAbet
 
                 SelectedChessPiece = null;
 
+                PickNDrop(TileDic[a].Horizontal, TileDic[a].Rotation , TileDic[key].Horizontal, TileDic[key].Rotation);
+
+
                 //this is some debug code 
                 // TileDic[a] is where the arm should pick up the piece
                 // TileDic[key] is there it should be dropped
@@ -412,5 +432,69 @@ namespace TicTacChessAbet
             UpdateManager();
         }
 
+        private void cbxUsingArduino_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxUsingArduino.Checked)
+            {
+                gbxInoSettings.Visible = true;
+            }
+            else
+            {
+                gbxInoSettings.Visible = false;
+            }
+        }
+
+        private void btnSearchPtr_Click(object sender, EventArgs e)
+        {
+            String[] ports = SerialPort.GetPortNames();
+            Array.Sort(ports);
+            string m_portWithOutLastCharacter;
+
+            foreach (String port in ports)
+            {
+                m_portWithOutLastCharacter = port;
+                cbxPorts.Items.Add(m_portWithOutLastCharacter);
+            }
+        }
+
+        private void PickNDrop(int _fromHoz, int _fromRot, int _toHoz, int _ToRot)
+        {
+            List<MulticastDelegate> delegateList = new List<MulticastDelegate>();
+
+            Action methodWithoutParams = () =>
+            {
+
+                queManager.MoveTo(_fromHoz, _fromRot);
+                queManager.PickOrDrop();
+                queManager.MoveTo(_toHoz, _ToRot);
+                queManager.PickOrDrop();
+                queManager.ReturnToStartPos();
+            };
+            delegateList.Add(methodWithoutParams);
+
+            Thread thread = new Thread(() =>
+            {
+                foreach (var item in delegateList)
+                {
+                    item.DynamicInvoke();
+                }
+            });
+            thread.Start();
+        }
+
+        private void btnConnectToPtr_Click(object sender, EventArgs e)
+        {
+            if (cbxPorts.Text == "")
+            {
+                return;
+            }
+
+            queManager = new QueManager(cbxPorts.Text);
+            Thread thread = new Thread(() =>
+            {
+                queManager.Ready();
+            });
+            thread.Start();
+        }
     }
 }

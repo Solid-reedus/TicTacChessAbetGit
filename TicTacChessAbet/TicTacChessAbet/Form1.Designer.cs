@@ -56,7 +56,17 @@
             this.lblcWhiteScore = new System.Windows.Forms.Label();
             this.lblBlackScore = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.cbxUsingArduino = new System.Windows.Forms.CheckBox();
+            this.gbxInoSettings = new System.Windows.Forms.GroupBox();
+            this.btnConnectToPtr = new System.Windows.Forms.Button();
+            this.cbxPorts = new System.Windows.Forms.ComboBox();
+            this.btnSearchPtr = new System.Windows.Forms.Button();
+            this.pnlSetupTileWhite5 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileWhite6 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileBlack6 = new System.Windows.Forms.Panel();
+            this.pnlSetupTileBlack5 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
+            this.gbxInoSettings.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlChessTileC3
@@ -172,7 +182,7 @@
             this.groupBox1.Controls.Add(this.pnlChessTileA3);
             this.groupBox1.Controls.Add(this.pnlChessTileB2);
             this.groupBox1.Controls.Add(this.pnlChessTileC1);
-            this.groupBox1.Location = new System.Drawing.Point(221, 108);
+            this.groupBox1.Location = new System.Drawing.Point(308, 105);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(299, 323);
             this.groupBox1.TabIndex = 6;
@@ -351,11 +361,107 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "hint:";
             // 
+            // cbxUsingArduino
+            // 
+            this.cbxUsingArduino.AutoSize = true;
+            this.cbxUsingArduino.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbxUsingArduino.Location = new System.Drawing.Point(14, 242);
+            this.cbxUsingArduino.Name = "cbxUsingArduino";
+            this.cbxUsingArduino.Size = new System.Drawing.Size(148, 29);
+            this.cbxUsingArduino.TabIndex = 28;
+            this.cbxUsingArduino.Text = "using arduino";
+            this.cbxUsingArduino.UseVisualStyleBackColor = true;
+            this.cbxUsingArduino.CheckedChanged += new System.EventHandler(this.cbxUsingArduino_CheckedChanged);
+            // 
+            // gbxInoSettings
+            // 
+            this.gbxInoSettings.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.gbxInoSettings.Controls.Add(this.btnConnectToPtr);
+            this.gbxInoSettings.Controls.Add(this.cbxPorts);
+            this.gbxInoSettings.Controls.Add(this.btnSearchPtr);
+            this.gbxInoSettings.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.gbxInoSettings.Location = new System.Drawing.Point(12, 277);
+            this.gbxInoSettings.Name = "gbxInoSettings";
+            this.gbxInoSettings.Size = new System.Drawing.Size(159, 124);
+            this.gbxInoSettings.TabIndex = 29;
+            this.gbxInoSettings.TabStop = false;
+            this.gbxInoSettings.Text = "arduino settings";
+            // 
+            // btnConnectToPtr
+            // 
+            this.btnConnectToPtr.Location = new System.Drawing.Point(6, 83);
+            this.btnConnectToPtr.Name = "btnConnectToPtr";
+            this.btnConnectToPtr.Size = new System.Drawing.Size(144, 26);
+            this.btnConnectToPtr.TabIndex = 31;
+            this.btnConnectToPtr.Text = "connect to port";
+            this.btnConnectToPtr.UseVisualStyleBackColor = true;
+            this.btnConnectToPtr.Click += new System.EventHandler(this.btnConnectToPtr_Click);
+            // 
+            // cbxPorts
+            // 
+            this.cbxPorts.FormattingEnabled = true;
+            this.cbxPorts.Location = new System.Drawing.Point(6, 54);
+            this.cbxPorts.Name = "cbxPorts";
+            this.cbxPorts.Size = new System.Drawing.Size(144, 23);
+            this.cbxPorts.TabIndex = 30;
+            // 
+            // btnSearchPtr
+            // 
+            this.btnSearchPtr.Location = new System.Drawing.Point(6, 22);
+            this.btnSearchPtr.Name = "btnSearchPtr";
+            this.btnSearchPtr.Size = new System.Drawing.Size(144, 26);
+            this.btnSearchPtr.TabIndex = 30;
+            this.btnSearchPtr.Text = "search for ports";
+            this.btnSearchPtr.UseVisualStyleBackColor = true;
+            this.btnSearchPtr.Click += new System.EventHandler(this.btnSearchPtr_Click);
+            // 
+            // pnlSetupTileWhite5
+            // 
+            this.pnlSetupTileWhite5.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileWhite5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileWhite5.Location = new System.Drawing.Point(575, 12);
+            this.pnlSetupTileWhite5.Name = "pnlSetupTileWhite5";
+            this.pnlSetupTileWhite5.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileWhite5.TabIndex = 5;
+            // 
+            // pnlSetupTileWhite6
+            // 
+            this.pnlSetupTileWhite6.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileWhite6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileWhite6.Location = new System.Drawing.Point(671, 12);
+            this.pnlSetupTileWhite6.Name = "pnlSetupTileWhite6";
+            this.pnlSetupTileWhite6.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileWhite6.TabIndex = 5;
+            // 
+            // pnlSetupTileBlack6
+            // 
+            this.pnlSetupTileBlack6.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileBlack6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileBlack6.Location = new System.Drawing.Point(671, 437);
+            this.pnlSetupTileBlack6.Name = "pnlSetupTileBlack6";
+            this.pnlSetupTileBlack6.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileBlack6.TabIndex = 9;
+            // 
+            // pnlSetupTileBlack5
+            // 
+            this.pnlSetupTileBlack5.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlSetupTileBlack5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSetupTileBlack5.Location = new System.Drawing.Point(575, 437);
+            this.pnlSetupTileBlack5.Name = "pnlSetupTileBlack5";
+            this.pnlSetupTileBlack5.Size = new System.Drawing.Size(90, 90);
+            this.pnlSetupTileBlack5.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 627);
+            this.ClientSize = new System.Drawing.Size(932, 627);
+            this.Controls.Add(this.pnlSetupTileBlack6);
+            this.Controls.Add(this.pnlSetupTileWhite6);
+            this.Controls.Add(this.pnlSetupTileBlack5);
+            this.Controls.Add(this.pnlSetupTileWhite5);
+            this.Controls.Add(this.gbxInoSettings);
+            this.Controls.Add(this.cbxUsingArduino);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblBlackScore);
             this.Controls.Add(this.lblcWhiteScore);
@@ -377,6 +483,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
+            this.gbxInoSettings.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,5 +518,14 @@
         private Label lblcWhiteScore;
         private Label lblBlackScore;
         private Label label4;
+        private CheckBox cbxUsingArduino;
+        private GroupBox gbxInoSettings;
+        private Button btnConnectToPtr;
+        private ComboBox cbxPorts;
+        private Button btnSearchPtr;
+        private Panel pnlSetupTileWhite5;
+        private Panel pnlSetupTileWhite6;
+        private Panel pnlSetupTileBlack6;
+        private Panel pnlSetupTileBlack5;
     }
 }
