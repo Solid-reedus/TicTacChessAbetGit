@@ -12,10 +12,6 @@ namespace TicTacChessAbet
 {
     public partial class Form1 : Form
     {
-        // IMPORTANT bishop/queen need code rework
-        // IMPORTANT pieces before game start code rework needed
-        // IMPORTANT placement bug
-
         //this class manages the connection between the c# game and the adruino robot
         //this class works by giving it comands
         QueManager queManager;
@@ -27,6 +23,10 @@ namespace TicTacChessAbet
         bool gameHasBegun = false;
         int whiteScore = 0;
         int blackScore = 0;
+
+        //these delegates are used to use methods on a other thread
+        delegate void IsEnabledDelegate(bool value);
+        delegate void UpdateTextDelegate(string value);
 
         //these bools are for checking the states of the arduino code
         bool usingArduino = false;
@@ -214,11 +214,6 @@ namespace TicTacChessAbet
                 pnlBlackBanner.BackColor = Color.Green;
             }
 
-            if (connected)
-            {
-                gbxInoSettings.BackColor = Color.Green;
-            }
-
             CheckWin();
             lblcWhiteScore.Text = "white score:" + whiteScore;
             lblBlackScore.Text = "black score:" + blackScore;
@@ -337,12 +332,13 @@ namespace TicTacChessAbet
 
                 (int, int) a = TileDic.FirstOrDefault(x => x.Value.TileOccupier == SelectedChessPiece).Key;
 
-                //TileDic[a].TileOccupier == clicked item
                 if (TileDic[a].TileOccupier != null && TileDic[key].TileOccupier == null)
                 {
                     TileDic[a].TileOccupier = null;
                     SelectedChessPiece.SetPos(TileDic[key]);
                 }
+                //in the exeption that the chesspiece clicks one of its own and is a wizard 
+                //they will swap
                 else if (SelectedChessPiece is WizardChessPiece && 
                     TileDic[a]?.TileOccupier?.IsBlack == TileDic[key]?.TileOccupier?.IsBlack)
                 {
@@ -360,18 +356,21 @@ namespace TicTacChessAbet
                 {
                     whitesTurn = true;
                 }
-
                 lblStatus.Text = SelectedChessPiece.Name + "has been placed on row " + key.Item1 + " and col " + key.Item2;
+                //update the screen
                 UpdateManager();
 
+                //when the piece is placed it will be unselected
                 SelectedChessPiece = null;
 
+                //if the game is using adruino it will do a extra step
                 if (usingArduino && connected)
                 {
                     PickNDrop(TileDic[a].Horizontal, TileDic[a].Rotation , TileDic[key].Horizontal, TileDic[key].Rotation);
                 }
             }
-            // needs rework
+            //if the game hasnt begun it will will set the selected piece on the placeable tiles
+            //and will also hide and disable the selected piece from the selection
             else if (TileDic[key].isPlaceable 
                 && !gameHasBegun
                 && SelectedChessPiece != null)
@@ -412,7 +411,7 @@ namespace TicTacChessAbet
                 SelectedChessPiece = null;
             }
         }
-
+        //this code will allow white to only place pieces on tile 0 1 and 2
         private void pnlSetupTileWhite1_Click(object sender, EventArgs e)
         {
             tiles[0].isPlaceable= true;
@@ -427,6 +426,7 @@ namespace TicTacChessAbet
             SelectedChessPiece = WhiteSelectablePieces.FirstOrDefault(x => x.Item1 == pnl).Item2;
         }
 
+        //this code will allow black to only place pieces on tile 6 7 and 8
         private void pnlSetupTileBlack1_Click(object sender, EventArgs e)
         {
             tiles[6].isPlaceable = true;
@@ -441,6 +441,8 @@ namespace TicTacChessAbet
             SelectedChessPiece = BlackSelectablePieces.FirstOrDefault(x => x.Item1 == pnl).Item2;
         }
 
+        //this method will start the game by making the gameHasBegun true
+        //and making all the selecting pieces items disappear
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 3; i++)
@@ -458,7 +460,6 @@ namespace TicTacChessAbet
                     return;
                 }
             }
-
 
             for (int i = 0; i < WhiteSelectablePieces.Count; i++)
             {
@@ -478,6 +479,7 @@ namespace TicTacChessAbet
             gameHasBegun = true;
         }
 
+        //this code resets the pieces
         private void btnReset_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < tiles.Count; i++)
@@ -501,11 +503,11 @@ namespace TicTacChessAbet
             UpdateManager();
         }
 
+        //this method enables and disables the arduino
         private void cbxUsingArduino_CheckedChanged(object sender, EventArgs e)
         {
             if (cbxUsingArduino.Checked)
             {
-                
                 pnlSetupTileWhite6.Visible = false;
                 pnlSetupTileWhite6.Enabled = false;
                 pnlSetupTileBlack6.Visible = false;
@@ -526,6 +528,7 @@ namespace TicTacChessAbet
             }
         }
 
+        //this method searches all the ports and puts them into cbxPorts
         private void btnSearchPtr_Click(object sender, EventArgs e)
         {
             String[] ports = SerialPort.GetPortNames();
@@ -539,21 +542,39 @@ namespace TicTacChessAbet
             }
         }
 
+        //this method is used to pick and drop pieces ad various places
         private void PickNDrop(int _fromHoz, int _fromRot, int _toHoz, int _ToRot)
         {
+            //this is a list of all the things the arduino must do
             List<MulticastDelegate> delegateList = new List<MulticastDelegate>();
 
+            //this delegate enabels and disables the board
+            IsEnabledDelegate gbxTilesEnabledDelegate = (bool _value) =>
+            {
+                gbxTiles.Enabled = _value;
+            };
+            //this delegate is used to update the status text
+            UpdateTextDelegate UpdateText = (string _status) =>
+            {
+                lblStatus.Text = _status;
+            };
+
+            //all the methods will be added here
             Action methodWithoutParams = () =>
             {
-
+                Invoke(UpdateText, "moving piece");
+                gbxTiles.Invoke(gbxTilesEnabledDelegate, false);
                 queManager.MoveTo(_fromHoz, _fromRot);
                 queManager.PickOrDrop();
                 queManager.MoveTo(_toHoz, _ToRot);
                 queManager.PickOrDrop();
                 queManager.ReturnToStartPos();
+                gbxTiles.Invoke(gbxTilesEnabledDelegate, true);
+                Invoke(UpdateText, "done moving piece");
             };
             delegateList.Add(methodWithoutParams);
 
+            //this loop will go through each method one for one
             Thread thread = new Thread(() =>
             {
                 foreach (var item in delegateList)
@@ -564,17 +585,29 @@ namespace TicTacChessAbet
             thread.Start();
         }
 
+        //this code will connect and ready the arduino
         private void btnConnectToPtr_Click(object sender, EventArgs e)
         {
+            //if there isnt anything selected then return early
             if (cbxPorts.Text == "")
             {
                 return;
             }
 
-            queManager = new QueManager(cbxPorts.Text, ref connected);
+            //this delegate enabels and disables the board
+            IsEnabledDelegate gbxTilesEnabledDelegate = (bool _value) =>
+            {
+                gbxTiles.Enabled = _value;
+            };
+
+            //this thread will execute the ready method that will ready the arduino
+            //it will also disable the board
+            queManager = new QueManager(cbxPorts.Text, ref connected, ref gbxInoSettings, ref lblStatusIno);
             Thread thread = new Thread(() =>
             {
+                gbxTiles.Invoke(gbxTilesEnabledDelegate, false);
                 queManager.Ready(ref AdruinoReady);
+                gbxTiles.Invoke(gbxTilesEnabledDelegate, true);
             });
             thread.Start();
         }

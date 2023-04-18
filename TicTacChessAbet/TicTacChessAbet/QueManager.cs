@@ -16,18 +16,22 @@ namespace serialPortDot6Test
     {
         SerialPort serialPort;
         List<string> log = new List<string>();
-
+        GroupBox gbxDisplay;
 
         bool isPickedUp = false;
 
-        public QueManager(string _portName, ref bool _connected)
+        public QueManager(string _portName, ref bool _connected, ref GroupBox _gbxDisplay, ref Label _updateText)
         {
+            gbxDisplay = _gbxDisplay;
             serialPort = new SerialPort();
             serialPort.PortName = _portName;
             serialPort.BaudRate = Convert.ToInt32(115200);
             serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             serialPort.Open();
 
+            gbxDisplay.BackColor = Color.Yellow;
+            gbxDisplay.Text = "connecting";
+            
             if (!serialPort.IsOpen)
             {
                 try
@@ -37,12 +41,16 @@ namespace serialPortDot6Test
                 }
                 catch
                 {
+                    _updateText.Text = "connection...failed";
+                    _gbxDisplay.BackColor = Color.Red;
                     MessageBox.Show("error cant open serialPort");
                 }
             }
 
             if (serialPort.IsOpen)
             {
+                _updateText.Text = "connection...ok";
+                gbxDisplay.BackColor = Color.Green;
                 _connected = true;
             }
             else
@@ -169,9 +177,9 @@ namespace serialPortDot6Test
                     Thread.Sleep(100);
                 }
                 WriteArduino("CS:1");
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
                 WriteArduino("SS:1");
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
 
                 WriteArduino("VS:950");
                 Thread.Sleep(500);
@@ -188,11 +196,11 @@ namespace serialPortDot6Test
             else
             {
                 WriteArduino("CS:0");
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
                 WriteArduino("SS:0");
+                Thread.Sleep(1000);
                 isPickedUp = false;
             }
-            
         }
 
         //this function gets the last 3 lines from the log (if its long enough)

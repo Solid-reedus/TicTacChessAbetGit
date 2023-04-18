@@ -46,7 +46,6 @@
             this.pnlSetupTileBlack3 = new System.Windows.Forms.Panel();
             this.lblText = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnlSetupTileWhite4 = new System.Windows.Forms.Panel();
             this.pnlSetupTileBlack4 = new System.Windows.Forms.Panel();
             this.pnlWhiteBanner = new System.Windows.Forms.Panel();
@@ -55,9 +54,9 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.lblcWhiteScore = new System.Windows.Forms.Label();
             this.lblBlackScore = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.cbxUsingArduino = new System.Windows.Forms.CheckBox();
             this.gbxInoSettings = new System.Windows.Forms.GroupBox();
+            this.lblStatusIno = new System.Windows.Forms.Label();
             this.btnConnectToPtr = new System.Windows.Forms.Button();
             this.cbxPorts = new System.Windows.Forms.ComboBox();
             this.btnSearchPtr = new System.Windows.Forms.Button();
@@ -367,16 +366,6 @@
             this.lblBlackScore.TabIndex = 26;
             this.lblBlackScore.Text = "black score:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(70, 619);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 45);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "hint:";
-            // 
             // cbxUsingArduino
             // 
             this.cbxUsingArduino.AutoSize = true;
@@ -392,16 +381,26 @@
             // gbxInoSettings
             // 
             this.gbxInoSettings.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.gbxInoSettings.Controls.Add(this.lblStatusIno);
             this.gbxInoSettings.Controls.Add(this.btnConnectToPtr);
             this.gbxInoSettings.Controls.Add(this.cbxPorts);
             this.gbxInoSettings.Controls.Add(this.btnSearchPtr);
             this.gbxInoSettings.ForeColor = System.Drawing.SystemColors.ControlText;
             this.gbxInoSettings.Location = new System.Drawing.Point(606, 171);
             this.gbxInoSettings.Name = "gbxInoSettings";
-            this.gbxInoSettings.Size = new System.Drawing.Size(159, 124);
+            this.gbxInoSettings.Size = new System.Drawing.Size(159, 160);
             this.gbxInoSettings.TabIndex = 29;
             this.gbxInoSettings.TabStop = false;
             this.gbxInoSettings.Text = "arduino settings";
+            // 
+            // lblStatusIno
+            // 
+            this.lblStatusIno.AutoSize = true;
+            this.lblStatusIno.Location = new System.Drawing.Point(9, 112);
+            this.lblStatusIno.Name = "lblStatusIno";
+            this.lblStatusIno.Size = new System.Drawing.Size(76, 15);
+            this.lblStatusIno.TabIndex = 44;
+            this.lblStatusIno.Text = "connection...";
             // 
             // btnConnectToPtr
             // 
@@ -611,7 +610,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 669);
+            this.ClientSize = new System.Drawing.Size(773, 627);
             this.Controls.Add(this.gbxBlackLabels);
             this.Controls.Add(this.gbxWhiteLabels);
             this.Controls.Add(this.pnlSetupTileBlack6);
@@ -620,7 +619,6 @@
             this.Controls.Add(this.pnlSetupTileWhite5);
             this.Controls.Add(this.gbxInoSettings);
             this.Controls.Add(this.cbxUsingArduino);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblBlackScore);
             this.Controls.Add(this.lblcWhiteScore);
             this.Controls.Add(this.btnReset);
@@ -642,6 +640,7 @@
             this.Text = "Form1";
             this.gbxTiles.ResumeLayout(false);
             this.gbxInoSettings.ResumeLayout(false);
+            this.gbxInoSettings.PerformLayout();
             this.gbxWhiteLabels.ResumeLayout(false);
             this.gbxWhiteLabels.PerformLayout();
             this.gbxBlackLabels.ResumeLayout(false);
@@ -670,7 +669,6 @@
         private Panel pnlSetupTileBlack3;
         private Label lblText;
         private Label lblStatus;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Panel pnlSetupTileWhite4;
         private Panel pnlSetupTileBlack4;
         private Panel pnlWhiteBanner;
@@ -679,7 +677,6 @@
         private Button btnReset;
         private Label lblcWhiteScore;
         private Label lblBlackScore;
-        private Label label4;
         private CheckBox cbxUsingArduino;
         private GroupBox gbxInoSettings;
         private Button btnConnectToPtr;
@@ -703,5 +700,6 @@
         private Label lblBlackKnight;
         private Label lblBlackKing;
         private Label lblBlackWizard;
+        private Label lblStatusIno;
     }
 }
